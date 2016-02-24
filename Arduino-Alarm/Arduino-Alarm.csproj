@@ -63,6 +63,13 @@
     <Compile Include="Entities\ScheduleEntity.cs" />
     <Compile Include="Entities\Subjects.cs" />
     <Compile Include="Entities\Teachers.cs" />
+    <Compile Include="SetAlarm\ConnectArduino.cs" />
+    <Compile Include="SetAlarm\GetGoogleMap.cs" />
+    <Compile Include="SetAlarm\GetSchedule.cs" />
+    <Compile Include="SetAlarm\SetAlarmView.xaml.cs">
+      <DependentUpon>SetAlarmView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SetAlarm\SetAlarmViewModel.cs" />
     <Page Include="First Settings\FirstSettings.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -89,6 +96,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Priorities\PrioritiesView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SetAlarm\SetAlarmView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

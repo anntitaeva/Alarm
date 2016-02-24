@@ -4,11 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Arduino_Alarm
+namespace Arduino_Alarm.SetAlarm
 {
-    class Place
+    class ConnectArduino
     {
-        public string Street { get; set; }
-        public int House { get; set; }
     }
 }

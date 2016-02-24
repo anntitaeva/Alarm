@@ -8,5 +8,7 @@ namespace Arduino_Alarm
 {
     class Teachers
     {
+        public string Surname { get; set; }
+
     }
 }
