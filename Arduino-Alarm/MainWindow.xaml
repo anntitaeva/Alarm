@@ -20,7 +20,7 @@
             <ColumnDefinition Width="155*" />
             <ColumnDefinition Width="53*" />
         </Grid.ColumnDefinitions>
-        <Button x:Name="Set Alarm"
+        <Button x:Name="Set_Alarm"
                 Width="86"
                 Height="79"
                 Margin="26,199,0,0"
@@ -28,7 +28,6 @@
                 VerticalAlignment="Top"
                 Background="#FF62E08A"
                 BorderBrush="#FFD48E8E"
-                Click="button_Click"
                 Content="Set Alarm"
                 ForceCursor="False"
                 Foreground="White"
@@ -41,7 +40,6 @@
                 VerticalAlignment="Top"
                 Background="#FFB155BF"
                 BorderBrush="#FFD48E8E"
-                Click="button_Click"
                 Content="Initian Settings"
                 ForceCursor="False"
                 Foreground="White"
@@ -55,7 +53,6 @@
                 VerticalAlignment="Top"
                 Background="#FF44ABBB"
                 BorderBrush="#FFD48E8E"
-                Click="button_Click"
                 Content="Set Priorities"
                 ForceCursor="False"
                 Foreground="White"
@@ -80,7 +77,6 @@
                 VerticalAlignment="Top"
                 Background="#FFE6D673"
                 BorderBrush="#FFD48E8E"
-                Click="button_Click"
                 Content="Manual Settings "
                 ForceCursor="False"
                 Foreground="White"
