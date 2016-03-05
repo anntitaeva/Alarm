@@ -11,8 +11,18 @@ namespace Arduino_Alarm.SetAlarm
     {
         SerialPort arduinoBoard = new SerialPort();
         bool ArduinoPortFound = false;
-        
-        private async Task DetectArduino()
+
+        private void SendtoArdu()
+        {
+            DetectArduino();
+            arduinoBoard.Write("");
+
+            System.Threading.Thread.Sleep(500);
+            arduinoBoard.Close();
+
+        }
+
+        private void DetectArduino()
         {
             try
             {
@@ -35,7 +45,7 @@ namespace Arduino_Alarm.SetAlarm
             catch { }
 
             if (ArduinoPortFound == false) return;
-            System.Threading.Thread.Sleep(500); 
+            System.Threading.Thread.Sleep(500);
 
             arduinoBoard.BaudRate = 9600;
             arduinoBoard.ReadTimeout = 1000;
@@ -53,36 +63,31 @@ namespace Arduino_Alarm.SetAlarm
 
 
         private bool ArduinoDetected()
-{
-    try
-    {
-        arduinoBoard.Open();
-        System.Threading.Thread.Sleep(1000);
-       
-        string returnMessage = arduinoBoard.ReadLine();
-        arduinoBoard.Close();
-
-        if (returnMessage.Contains("Info from Arduino"))
         {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
-    }
-    catch (Exception e)
-    {
-        return false;
-    }
-}
-        private async Task WriteToArdu()
-        {
-            await DetectArduino();
-            arduinoBoard.Write("1");
+            try
+            {
+                arduinoBoard.Open();
+                System.Threading.Thread.Sleep(1000);
 
-        }
+                string returnMessage = arduinoBoard.ReadLine();
+                arduinoBoard.Close();
 
+                if (returnMessage.Contains("Info from Arduino"))
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            catch (Exception e)
+            {
+                return false;
+            }
+        }
     }
 
 }
+
+
