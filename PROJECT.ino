@@ -6,11 +6,11 @@ const int BUTTON = 2; //выход кнопки
 
 int BUTTON_STATE = 0;
 int i = 0; // счетчик для мелодии
-String getinfo = "2"; //получаемый код через ком-порт
-int getdone=0;
+String getinfo = "0"; //получаемый код через ком-порт
 unsigned long minutes = 1000L * 60;
 int num = 0; //количество повторов остановки
-boolean done = false; //фиксация остановки
+boolean repeat = false;
+
 
 
 int notes[] = {
@@ -35,10 +35,9 @@ void setup()
 }
 
 
-
 void setalarm()
 {
-  if (digitalRead(BUTTON) == LOW && BUTTON_STATE == 0)
+  if (digitalRead(BUTTON) == LOW && (BUTTON_STATE == 0 || repeat == true))
   {
     tone(SPEAKER, notes[i], times[i]);
     delay(times[i]);
@@ -53,34 +52,56 @@ void setalarm()
   {
     BUTTON_STATE = 1;
     num++;
-    done = true;
   }
 }
 
+void resetData()
+{ 
+    getinfo = "0";
+    BUTTON_STATE=0;
+    repeat=false;
+    num=0;
+    i=0;
+}
 void loop()
 {
- // delay(1000);
- // Serial.println("Info from Arduino");
- // delay(3000);
-  
-  if(Serial.available())
-     getinfo = Serial.read();
-  Serial.println(getinfo);
-  
-  
+  if (getinfo == "0")
+  {
+    Serial.println("Info from Arduino");
+    delay(1000);
+    if (Serial.available())
+    {
+      getinfo = Serial.read();
+    }
+  }
+
+
+
   if (getinfo == "48")
+  {
     setalarm();
+    resetData();
+   
+  }
 
   if (getinfo == "49")
   {
     setalarm();
-    if (done == true && num == 1)
+    if (BUTTON_STATE == 1 && num == 1)
     {
-      delay(5 * minutes);
-      done = false;
-      BUTTON_STATE = 0;
-      i = 0;
+      if ( repeat == false)
+      {
+        delay(1 * minutes);
+        repeat = true;
+        i = 0;
+      }
+
       setalarm();
+
+      if (num == 2)
+      { 
+        resetData();
+      }
     }
 
   }
