@@ -31,7 +31,7 @@
                 Content="Set Alarm"
                 ForceCursor="False"
                 Foreground="White"
-                OpacityMask="Black" />
+                OpacityMask="Black" Click="Set_Alarm_Click" />
         <Button x:Name="Initial_Set"
                 Width="120"
                 Height="43"
@@ -43,7 +43,7 @@
                 Content="Initian Settings"
                 ForceCursor="False"
                 Foreground="White"
-                OpacityMask="Black" />
+                OpacityMask="Black" Click="Initial_Set_Click" />
         <Button x:Name="Set_priorities"
                 Grid.ColumnSpan="2"
                 Width="212"
@@ -56,7 +56,7 @@
                 Content="Set Priorities"
                 ForceCursor="False"
                 Foreground="White"
-                OpacityMask="Black" />
+                OpacityMask="Black" Click="Set_priorities_Click" />
         <Label x:Name="label"
                Grid.ColumnSpan="2"
                Width="334"
@@ -80,7 +80,7 @@
                 Content="Manual Settings "
                 ForceCursor="False"
                 Foreground="White"
-                OpacityMask="Black" />
+                OpacityMask="Black" Click="Manual_Set_Click" />
         <Button x:Name="button"
                 Grid.Column="1"
                 Grid.ColumnSpan="2"

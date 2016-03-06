@@ -17,9 +17,9 @@ namespace Arduino_Alarm
     /// <summary>
     /// Логика взаимодействия для Window1.xaml
     /// </summary>
-    public partial class Window1 : Window
+    public partial class SetAlarmView : Window
     {
-        public Window1()
+        public SetAlarmView()
         {
             InitializeComponent();
         }

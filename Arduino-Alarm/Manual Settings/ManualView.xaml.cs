@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Xceed.Wpf.Toolkit;
 
 namespace Arduino_Alarm.Manual_Settings
 {
@@ -19,9 +20,22 @@ namespace Arduino_Alarm.Manual_Settings
     /// </summary>
     public partial class ManualView : Window
     {
+        private bool isClosed = false;
+
         public ManualView()
         {
             InitializeComponent();
+            DataContext = new ManualViewModel();
+            this.Closed += DialogWindowClosed;
         }
+
+       
+
+        void DialogWindowClosed(object sender, EventArgs e)
+        {
+            this.isClosed = true;
+        }
+
+
     }
 }

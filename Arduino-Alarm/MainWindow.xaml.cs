@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Arduino_Alarm.Manual_Settings;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,6 +13,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Arduino_Alarm.SetAlarm;
+using Arduino_Alarm.First_Settings;
 
 namespace Arduino_Alarm
 {
@@ -20,9 +23,31 @@ namespace Arduino_Alarm
     /// </summary>
     public partial class MainWindow : Window
     {
+        Window _iwindow;
+
         public MainWindow()
         {
             InitializeComponent();
+        }
+
+        private void Manual_Set_Click(object sender, RoutedEventArgs e)
+        {
+            (_iwindow = new ManualView()).ShowDialog();
+        }
+
+        private void Set_priorities_Click(object sender, RoutedEventArgs e)
+        {
+            (_iwindow = new PrioritiesView()).ShowDialog();
+        }
+
+        private void Set_Alarm_Click(object sender, RoutedEventArgs e)
+        {
+            (_iwindow = new SetAlarmView()).ShowDialog();
+        }
+
+        private void Initial_Set_Click(object sender, RoutedEventArgs e)
+        {
+            (_iwindow = new FirstSettings()).ShowDialog();
         }
     }
 }
