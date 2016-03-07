@@ -11,6 +11,7 @@ namespace Arduino_Alarm.SetAlarm
     {
         SerialPort arduinoBoard = new SerialPort();
         bool ArduinoPortFound = false;
+  
 
         private void SendtoArdu()
         {

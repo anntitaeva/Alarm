@@ -19,6 +19,7 @@ namespace Arduino_Alarm
         public string Group { get; set; }
         public string SubGroup { get; set; }
         public string Minor { get; set; }
+        public int Priority;
 
     }
 }

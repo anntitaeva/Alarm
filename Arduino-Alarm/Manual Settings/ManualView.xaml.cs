@@ -20,22 +20,24 @@ namespace Arduino_Alarm.Manual_Settings
     /// </summary>
     public partial class ManualView : Window
     {
-        private bool isClosed = false;
-
+        ManualViewModel _vm = new ManualViewModel();
         public ManualView()
         {
             InitializeComponent();
-            DataContext = new ManualViewModel();
-            this.Closed += DialogWindowClosed;
+            DataContext = _vm;
         }
 
-       
-
-        void DialogWindowClosed(object sender, EventArgs e)
+        private void OK_Click(object sender, RoutedEventArgs e)
         {
-            this.isClosed = true;
+            _vm.SaveChanges();
+            if (_vm.close == true)
+                this.Close();
+           
         }
 
-
+        private void Cancel_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
     }
 }

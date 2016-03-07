@@ -6,7 +6,14 @@ using System.Threading.Tasks;
 
 namespace Arduino_Alarm.SetAlarm
 {
-    class SetAlarmViewModel
+    class SetAlarmViewModel:Factory //наследует первоначальные настройки, если изменяются, то файл перезаписывается
     {
+        ConnectArduino ardu = new ConnectArduino();
+
+        public void StartArdu()
+        {
+            if (Factory.Time != null) { }
+                
+        }
     }
 }

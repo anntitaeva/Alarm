@@ -17,7 +17,7 @@
             </LinearGradientBrush>
         </Grid.Background>
         <Grid.ColumnDefinitions />
-        <Button x:Name="button"
+        <Button x:Name="OK"
                 Width="120"
                 Margin="10,224,0,0"
                 HorizontalAlignment="Left"
@@ -26,8 +26,8 @@
                 BorderBrush="#FFD48E8E"
                 BorderThickness="0"
                 Content="OK"
-                Foreground="White" />
-        <Button x:Name="button1"
+                Foreground="White" Click="OK_Click" />
+        <Button x:Name="Cancel"
                 Width="120"
                 Margin="162,224,0,0"
                 HorizontalAlignment="Left"
@@ -35,7 +35,7 @@
                 Background="#FF8B5656"
                 BorderBrush="#FFD48E8E"
                 Content="Cancel"
-                Foreground="White" />
+                Foreground="White" Click="Cancel_Click" />
         <Label x:Name="Adress"
                Margin="10,30,0,0"
                HorizontalAlignment="Left"
@@ -76,7 +76,7 @@
                  TextWrapping="Wrap" />
         <xctk:MaskedTextBox x:Name="MaskedTextBox"
                             Height="21"
-                            Margin="171,0,36,149"
+                            Margin="171,0,36,145"
                             VerticalAlignment="Bottom"
                             Background="#FF62E08A"
                             BorderBrush="#FFD48E8E"

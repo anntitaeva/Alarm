@@ -15,7 +15,7 @@
                 <GradientStop Offset="1" Color="#FF763232" />
             </LinearGradientBrush>
         </Grid.Background>
-        <Button x:Name="button"
+        <Button x:Name="OK"
                 Width="126"
                 Margin="10,224,0,0"
                 HorizontalAlignment="Left"
@@ -24,8 +24,8 @@
                 BorderBrush="#FFD48E8E"
                 BorderThickness="0"
                 Content="OK"
-                Foreground="White" />
-        <Button x:Name="button1"
+                Foreground="White" Click="OK_Click" />
+        <Button x:Name="Cancel"
                 Width="120"
                 Margin="162,224,0,0"
                 HorizontalAlignment="Left"
@@ -33,7 +33,7 @@
                 Background="#FF8B5656"
                 BorderBrush="#FFD48E8E"
                 Content="Cancel"
-                Foreground="White" />
+                Foreground="White" Click="Cancel_Click" />
         <ListBox x:Name="listBox"
                  Width="126"
                  Height="137"

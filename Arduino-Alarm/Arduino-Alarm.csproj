@@ -85,19 +85,21 @@
     </ApplicationDefinition>
     <Compile Include="Entities\Place.cs" />
     <Compile Include="Entities\ScheduleEntity.cs" />
-    <Compile Include="SetAlarm\ConnectArduino.cs" />
+    <Compile Include="ConnectArduino.cs" />
+    <Compile Include="Factory.cs" />
+    <Compile Include="SetAlarm\CalculateTime.cs" />
     <Compile Include="SetAlarm\GetGoogleMap.cs" />
-    <Compile Include="SetAlarm\GetSchedule\Check.cs" />
-    <Compile Include="SetAlarm\GetSchedule\GetSchedule.cs" />
-    <Compile Include="SetAlarm\GetSchedule\FinalSchedule.cs" />
-    <Compile Include="SetAlarm\GetSchedule\Settings.cs" />
+    <Compile Include="GetSchedule\Check.cs" />
+    <Compile Include="GetSchedule\GetSchedule.cs" />
+    <Compile Include="GetSchedule\FinalSchedule.cs" />
+    <Compile Include="GetSchedule\Settings.cs" />
+    <Compile Include="SetAlarm\ModificatedData.cs" />
     <Compile Include="SetAlarm\SetAlarmView.xaml.cs">
       <DependentUpon>SetAlarmView.xaml</DependentUpon>
     </Compile>
     <Compile Include="SetAlarm\SetAlarmViewModel.cs" />
     <Compile Include="Entities\Subjects.cs" />
     <Compile Include="Entities\Teachers.cs" />
-    <Compile Include="WindowsInteraction.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

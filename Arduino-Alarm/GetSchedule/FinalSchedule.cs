@@ -26,7 +26,7 @@ namespace Arduino_Alarm.SetAlarm.GetSchedule
                 {
 
                     DayOfWeek day = GetDay(dt.Rows[i].ItemArray[0].ToString());
-                    Settings set = new Settings();
+                    var set = new Settings();
 
                     string[] time_start = dt.Rows[i].ItemArray[1].ToString().Split(':');
                     string[] time_finish = dt.Rows[i].ItemArray[2].ToString().Split(':');
@@ -51,7 +51,8 @@ namespace Arduino_Alarm.SetAlarm.GetSchedule
                         Tutor = tutor,
                         Group = "ББИ145",
                         SubGroup = set.Subgroup,
-                        Minor = set.Minor
+                        Minor = set.Minor,
+                        Priority = 0
                     };
 
                     if (Classes.ContainsKey(day))

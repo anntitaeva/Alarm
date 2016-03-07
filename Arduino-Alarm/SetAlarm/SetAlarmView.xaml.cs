@@ -23,5 +23,15 @@ namespace Arduino_Alarm
         {
             InitializeComponent();
         }
+
+        private void OK_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
+
+        private void Cancel_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
     }
 }

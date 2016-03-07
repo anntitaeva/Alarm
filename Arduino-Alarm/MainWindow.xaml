@@ -43,7 +43,7 @@
                 Content="Initian Settings"
                 ForceCursor="False"
                 Foreground="White"
-                OpacityMask="Black" Click="Initial_Set_Click" />
+                OpacityMask="Black"  />
         <Button x:Name="Set_priorities"
                 Grid.ColumnSpan="2"
                 Width="212"
