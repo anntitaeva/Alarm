@@ -12,9 +12,9 @@ namespace Arduino_Alarm.SetAlarm.GetSchedule
     {
          public Dictionary<DayOfWeek, List<ScheduleEntity>> Classes { get; set; }
 
-        public FinalSchedule(DataTable dt)
+        public FinalSchedule()
         {
-            Fill(dt);
+            Fill(new GetSchedule().Data);
         }
 
         void Fill(DataTable dt)
