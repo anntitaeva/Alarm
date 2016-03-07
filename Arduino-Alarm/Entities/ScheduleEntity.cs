@@ -9,9 +9,16 @@ namespace Arduino_Alarm
 {
     class ScheduleEntity
     {
-        public Place place { get; set; }
-        public Subjects Subject { get; set; }
-        public Teachers Teachet { get; set; }
-        public DateTime Time { get; set; }
+        public DateTime Start { get; set; }
+        public DateTime Finish { get; set; }
+        public string Name { get; set; }
+        public string Type { get; set; }
+        public string Adress { get; set; }
+        public string Room { get; set; }
+        public string Tutor { get; set; }
+        public string Group { get; set; }
+        public string SubGroup { get; set; }
+        public string Minor { get; set; }
+
     }
 }

@@ -89,7 +89,10 @@
     <Compile Include="Entities\Teachers.cs" />
     <Compile Include="SetAlarm\ConnectArduino.cs" />
     <Compile Include="SetAlarm\GetGoogleMap.cs" />
-    <Compile Include="SetAlarm\GetSchedule.cs" />
+    <Compile Include="SetAlarm\GetSchedule\Check.cs" />
+    <Compile Include="SetAlarm\GetSchedule\GetSchedule.cs" />
+    <Compile Include="SetAlarm\GetSchedule\FinalSchedule.cs" />
+    <Compile Include="SetAlarm\GetSchedule\Settings.cs" />
     <Compile Include="SetAlarm\SetAlarmView.xaml.cs">
       <DependentUpon>SetAlarmView.xaml</DependentUpon>
     </Compile>

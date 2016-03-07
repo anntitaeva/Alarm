@@ -6,19 +6,22 @@ using System.Threading.Tasks;
 using System.Data;
 using System.Data.OleDb;
 
-namespace Arduino_Alarm.SetAlarm
+namespace Arduino_Alarm.SetAlarm.GetSchedule
 {
     class GetSchedule
     {
         public string Path { get; set; }
+        public DataTable Data { get; set; }
         public GetSchedule()
         {
-            Path = "Schedule.xls";
+            Path = "..\\..\\Schedule.xls";
+            Data = GetData(Path);
         }
 
         public GetSchedule(string path)
         {
             Path = path;
+            Data = GetData(Path);
         }
 
         DataTable GetData(string path)
