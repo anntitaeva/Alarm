@@ -83,10 +83,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Entities\Place.cs" />
-    <Compile Include="Entities\ScheduleEntity.cs" />
-    <Compile Include="Entities\Subjects.cs" />
-    <Compile Include="Entities\Teachers.cs" />
     <Compile Include="SetAlarm\ConnectArduino.cs" />
     <Compile Include="SetAlarm\GetGoogleMap.cs" />
     <Compile Include="SetAlarm\GetSchedule\Check.cs" />

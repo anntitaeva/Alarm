@@ -10,7 +10,7 @@ namespace Arduino_Alarm.SetAlarm.GetSchedule
 {
     class FinalSchedule
     {
-         public Dictionary<DayOfWeek, List<ScheduleEntity>> Classes { get; set; }
+        public Dictionary<DayOfWeek, List<ScheduleEntity>> Classes { get; set; }
 
         public FinalSchedule()
         {
