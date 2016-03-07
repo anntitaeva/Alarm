@@ -26,7 +26,7 @@
             FontSize="14.667" Height="26" VerticalAlignment="Bottom" TextAlignment="Center"
             Background="#FFE6D673"
             BorderBrush="#FFD48E8E" FontFamily="Arial Unicode MS" Foreground="#FFD68080"/>
-        <Button x:Name="button" Content="OK" HorizontalAlignment="Left" Margin="10,206,0,0" VerticalAlignment="Top" Width="126" Background="#FF8B5656"
+        <Button x:Name="button" Content="OK" HorizontalAlignment="Left" Margin="10,206,0,0" VerticalAlignment="Top" Width="120" Background="#FF8B5656"
             BorderBrush="#FFD48E8E" BorderThickness="0" Foreground="White"/>
         <Button x:Name="button1" Content="Cancel" HorizontalAlignment="Left" Margin="162,206,0,0" VerticalAlignment="Top" Width="120" Background="#FF8B5656"
             BorderBrush="#FFD48E8E" Foreground="White"/>

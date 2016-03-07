@@ -83,6 +83,8 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Entities\Place.cs" />
+    <Compile Include="Entities\ScheduleEntity.cs" />
     <Compile Include="SetAlarm\ConnectArduino.cs" />
     <Compile Include="SetAlarm\GetGoogleMap.cs" />
     <Compile Include="SetAlarm\GetSchedule\Check.cs" />
@@ -93,11 +95,9 @@
       <DependentUpon>SetAlarmView.xaml</DependentUpon>
     </Compile>
     <Compile Include="SetAlarm\SetAlarmViewModel.cs" />
+    <Compile Include="Entities\Subjects.cs" />
+    <Compile Include="Entities\Teachers.cs" />
     <Compile Include="WindowsInteraction.cs" />
-    <Page Include="First Settings\FirstSettings.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -106,10 +106,6 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="First Settings\FirstSettings.xaml.cs">
-      <DependentUpon>FirstSettings.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="First Settings\FirstSettingsViewModel.cs" />
     <Compile Include="MainViewModel.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
