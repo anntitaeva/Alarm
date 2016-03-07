@@ -14,7 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Arduino_Alarm.SetAlarm;
-using Arduino_Alarm.First_Settings;
+
 
 namespace Arduino_Alarm
 {
@@ -45,9 +45,5 @@ namespace Arduino_Alarm
             (_iwindow = new SetAlarmView()).ShowDialog();
         }
 
-        private void Initial_Set_Click(object sender, RoutedEventArgs e)
-        {
-            (_iwindow = new FirstSettings()).ShowDialog();
-        }
     }
 }
