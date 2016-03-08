@@ -12,6 +12,7 @@ namespace Arduino_Alarm
         public List<string> ItemsSelected { get; set; }
         public List<string> ItemsSelected2 { get; set; }
         public List<string> List2 { get; set; }
+
         PrioritiesView view = new PrioritiesView();
         
 
