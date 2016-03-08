@@ -22,13 +22,13 @@ namespace Arduino_Alarm.SetAlarm
                 {
                     _finaldata = new List<ModificatedData>();
 
-                    if (Factory.Time != null)
+                    if (Factory.Time != null&&Factory.Day.ToString()!=null)
                     {
 
                         ModificatedData newdata = new ModificatedData()
                         {
                             day = Factory.Day,
-                            // _timeStart = Factory.Time,
+                            _timeStart = Factory.Time,
                             _priority = 1
                         };
                         _finaldata.Add(newdata);
@@ -41,7 +41,7 @@ namespace Arduino_Alarm.SetAlarm
                             ModificatedData md = new ModificatedData()
                             {
                                 day = sentity.Start.DayOfWeek,
-                                _timeStart = sentity.Start.TimeOfDay,
+                                _timeStart = sentity.Start.TimeOfDay.ToString(),
                                 _priority = sentity.Priority
                             };
                             _finaldata.Add(md);
@@ -62,7 +62,7 @@ namespace Arduino_Alarm.SetAlarm
                 {
                     while (true)
                     {
-                        if (day._timeStart == DateTime.Now.TimeOfDay)
+                        if (day._timeStart == DateTime.Now.TimeOfDay.ToString())
                         {
                             ardu = Factory.Start();
                             ardu.Prior = day._priority;

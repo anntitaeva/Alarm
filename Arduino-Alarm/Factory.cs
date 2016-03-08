@@ -32,5 +32,13 @@ namespace Arduino_Alarm
             return _schedule;
 
         }
+
+        private static Settings _set;
+        public static Settings GetSettings()
+        {
+            if (_set == null)
+                _set = new Settings();
+            return _set;
+        }
     }
 }

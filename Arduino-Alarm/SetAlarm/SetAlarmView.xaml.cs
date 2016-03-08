@@ -30,6 +30,7 @@ namespace Arduino_Alarm
 
         private void OK_Click(object sender, RoutedEventArgs e)
         {
+            setalarm.SaveChanges();
             this.Close();
         }
 

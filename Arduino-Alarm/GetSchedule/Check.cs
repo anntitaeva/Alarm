@@ -21,7 +21,7 @@ namespace Arduino_Alarm.SetAlarm.GetSchedule
             Settings settings = new Settings();
             string subgroup = row.ItemArray[10].ToString();
 
-            if (String.IsNullOrEmpty(subgroup) || subgroup.Contains(settings.Subgroup))
+            if (String.IsNullOrEmpty(subgroup) || subgroup.Contains(settings.Subgroup.ToString()))
                 return true;
             else return false;
         }

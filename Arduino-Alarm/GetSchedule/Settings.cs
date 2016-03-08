@@ -10,7 +10,7 @@ namespace Arduino_Alarm.SetAlarm.GetSchedule
     class Settings
     {
 
-        public string Subgroup { get; set; }
+        public int Subgroup { get; set; }
         public string Minor { get; set; }
         public string Address { get; set;}
         public string TimeToReady { get; set; }
@@ -47,12 +47,12 @@ namespace Arduino_Alarm.SetAlarm.GetSchedule
             return settings;
         }
 
-        public static void ChangeSettings(string subgroup, string minor, string adress, string time_to_ready, string transport)
+        public void ChangeSettings(Settings set)
         {
             Encoding enc = Encoding.GetEncoding(1251);
             try
             {
-                string[] settings = new string[] { subgroup, minor, adress, time_to_ready, transport };
+                string[] settings = new string[] { set.Subgroup.ToString(), set.Minor, set.Address, set.TimeToReady, set.Transport };
                 File.WriteAllLines(@"..\\..\\Settings.txt", settings, enc);
             }
             catch { }
@@ -64,7 +64,7 @@ namespace Arduino_Alarm.SetAlarm.GetSchedule
             string[] settings = GetSettings();
             try
             {
-                Subgroup = settings[0];
+                Subgroup = Convert.ToInt16(settings[0]);
                 Minor = settings[1];
                 Address = settings[2];
                 TimeToReady = settings[3];

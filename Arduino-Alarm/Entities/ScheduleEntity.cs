@@ -17,7 +17,7 @@ namespace Arduino_Alarm
         public string Room { get; set; }
         public string Tutor { get; set; }
         public string Group { get; set; }
-        public string SubGroup { get; set; }
+        public int SubGroup { get; set; }
         public string Minor { get; set; }
         public int Priority;
 

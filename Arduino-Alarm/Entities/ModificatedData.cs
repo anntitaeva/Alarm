@@ -8,7 +8,7 @@ namespace Arduino_Alarm.SetAlarm
 {
     class ModificatedData
     {
-        public TimeSpan _timeStart { get; set; }
+        public string _timeStart { get; set; }
         public int _priority { get; set; }
         public DayOfWeek day { get; set; }
 
