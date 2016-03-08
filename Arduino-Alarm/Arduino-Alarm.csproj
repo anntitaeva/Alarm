@@ -83,6 +83,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Entities\InitialData.cs" />
     <Compile Include="Entities\ScheduleEntity.cs" />
     <Compile Include="ConnectArduino.cs" />
     <Compile Include="Factory.cs" />

@@ -40,7 +40,8 @@
                  Margin="10,60,0,0"
                  ItemsSource="{Binding List1}"
                  HorizontalAlignment="Left"
-                 VerticalAlignment="Top">
+                 VerticalAlignment="Top"
+                 SelectedItem="{Binding ItemsSelected}" SelectionMode="Multiple">
             <ListBox.Background>
                 <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1">
                     <GradientStop Offset="0.368" Color="#FF3A1D1D" />
@@ -54,6 +55,8 @@
                  Margin="162,60,0,0"
                  HorizontalAlignment="Left"
                  ItemsSource="{Binding List2}"
+                 SelectionMode="Multiple"
+                 SelectedItem="{Binding ItemsSelected2}"
                  VerticalAlignment="Top" BorderBrush="#FF89A0CB" Visibility="Hidden">
             <ListBox.Background>
                 <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1">
@@ -82,12 +85,21 @@
                Foreground="White" />
         <Button x:Name="button2"
                 Width="26"
-                Margin="136,118,0,0"
+                Margin="136,98,0,0"
                 HorizontalAlignment="Left"
                 VerticalAlignment="Top"
                 Background="#FF8B5656"
                 BorderBrush="#FFD48E8E"
                 BorderThickness="0"
                 Content="&gt;&gt;" Click="button2_Click" />
+        <Button x:Name="button" Content="&lt;&lt;"
+                Width="26"
+                Visibility="Hidden"
+                Margin="136,125,0,0"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Top"
+                Background="#FF8B5656"
+                BorderBrush="#FFD48E8E"
+                BorderThickness="0" Click="button_Click"/>
     </Grid>
 </Window>
