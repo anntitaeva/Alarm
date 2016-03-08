@@ -38,6 +38,7 @@
                  Width="126"
                  Height="137"
                  Margin="10,60,0,0"
+                 ItemsSource="{Binding List1}"
                  HorizontalAlignment="Left"
                  VerticalAlignment="Top">
             <ListBox.Background>
@@ -52,7 +53,8 @@
                  Height="137"
                  Margin="162,60,0,0"
                  HorizontalAlignment="Left"
-                 VerticalAlignment="Top">
+                 ItemsSource="{Binding List2}"
+                 VerticalAlignment="Top" BorderBrush="#FF89A0CB" Visibility="Hidden">
             <ListBox.Background>
                 <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1">
                     <GradientStop Offset="0.368" Color="#FF3A1D1D" />
@@ -86,6 +88,6 @@
                 Background="#FF8B5656"
                 BorderBrush="#FFD48E8E"
                 BorderThickness="0"
-                Content="&gt;&gt;" />
+                Content="&gt;&gt;" Click="button2_Click" />
     </Grid>
 </Window>

@@ -83,7 +83,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Entities\Place.cs" />
     <Compile Include="Entities\ScheduleEntity.cs" />
     <Compile Include="ConnectArduino.cs" />
     <Compile Include="Factory.cs" />
@@ -93,13 +92,11 @@
     <Compile Include="GetSchedule\GetSchedule.cs" />
     <Compile Include="GetSchedule\FinalSchedule.cs" />
     <Compile Include="GetSchedule\Settings.cs" />
-    <Compile Include="SetAlarm\ModificatedData.cs" />
+    <Compile Include="Entities\ModificatedData.cs" />
     <Compile Include="SetAlarm\SetAlarmView.xaml.cs">
       <DependentUpon>SetAlarmView.xaml</DependentUpon>
     </Compile>
     <Compile Include="SetAlarm\SetAlarmViewModel.cs" />
-    <Compile Include="Entities\Subjects.cs" />
-    <Compile Include="Entities\Teachers.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

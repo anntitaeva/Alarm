@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Arduino_Alarm.SetAlarm
 {
-    class CalculateTime: Factory
+    class CalculateTime: Factory //может надо будет переписать в зависимости от логики работы проги
     {
         static FinalSchedule _schedule=Factory.GetIt();
         public ConnectArduino ardu;
@@ -17,63 +17,66 @@ namespace Arduino_Alarm.SetAlarm
         private static List<ModificatedData> _finaldata;
         public static List<ModificatedData> Calculate()//изменить время с учетом гетгугл
         {
-            if (_finaldata == null)
-            {
-                _finaldata = new List<ModificatedData>();
-                foreach(KeyValuePair<DayOfWeek,List<ScheduleEntity>> data in _schedule.Classes)
+          
+                if (_finaldata == null)
                 {
-                    foreach(ScheduleEntity sentity in data.Value)
+                    _finaldata = new List<ModificatedData>();
+
+                    if (Factory.Time != null)
                     {
-                        ModificatedData md = new ModificatedData()
+
+                        ModificatedData newdata = new ModificatedData()
                         {
-                            day = sentity.Start.DayOfWeek,
-                            _timeStart = sentity.Start.TimeOfDay,
-                            _priority = sentity.Priority
+                            day = Factory.Day,
+                            // _timeStart = Factory.Time,
+                            _priority = 1
                         };
-                        _finaldata.Add(md);
+                        _finaldata.Add(newdata);
+                    }
+                else { 
+                    foreach (KeyValuePair<DayOfWeek, List<ScheduleEntity>> data in _schedule.Classes)
+                    {
+                        foreach (ScheduleEntity sentity in data.Value)
+                        {
+                            ModificatedData md = new ModificatedData()
+                            {
+                                day = sentity.Start.DayOfWeek,
+                                _timeStart = sentity.Start.TimeOfDay,
+                                _priority = sentity.Priority
+                            };
+                            _finaldata.Add(md);
+                        }
                     }
                 }
             }
             return _finaldata;
 
         }
+  
 
-       public void StartArdu()
+    public void Run()
         {
-
-            if (Factory.Time != null)
+            foreach (ModificatedData day in _finaldata)
             {
-                ModificatedData newdata = new ModificatedData()
+                if (day.day == DateTime.Now.DayOfWeek)
                 {
-                    day = Factory.Day,
-                    // _timeStart = Factory.Time,
-                    _priority = 1
-                };
-            }
-            else
-            {
-                foreach (ModificatedData day in _finaldata)
-                {
-                    if (day.day == DateTime.Now.DayOfWeek)
+                    while (true)
                     {
-                        while (true)
+                        if (day._timeStart == DateTime.Now.TimeOfDay)
                         {
-                            if (day._timeStart == DateTime.Now.TimeOfDay)
-                            {
-                                ardu = Factory.Start();
-                                ardu.Prior = day._priority;
-                            }
-
-                            System.Threading.Thread.Sleep(1000);
+                            ardu = Factory.Start();
+                            ardu.Prior = day._priority;
                         }
+
+                        System.Threading.Thread.Sleep(1000);
                     }
                 }
-
+            }
+        }
+     
                 
             }
            
 
         }
             
-    }
-}
