@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Arduino_Alarm.SetAlarm.GetSchedule;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,12 +15,14 @@ namespace Arduino_Alarm
         public List<string> List2 { get; set; }
 
         PrioritiesView view = new PrioritiesView();
+        FinalSchedule sched;
         
 
         public PrioritiesViewModel()
         {
             GetList1();
             view.OnSelectionChanged += Update;
+            sched = Factory.GetIt();
         }
       
         public void Update()
@@ -30,9 +33,10 @@ namespace Arduino_Alarm
 
         public void WorkWith2Lists(int i,List<string> list)
         {
+
             if (list != null && list.Count != 0)
             {
-                foreach (KeyValuePair<DayOfWeek, List<ScheduleEntity>> pair in Factory._schedule.Classes)
+                foreach (KeyValuePair<DayOfWeek, List<ScheduleEntity>> pair in sched.Classes)
                 {
                     foreach (ScheduleEntity se in pair.Value)
                         foreach (string s in list)
@@ -44,7 +48,7 @@ namespace Arduino_Alarm
 
         public List<string> GetList1()
         {
-            foreach(KeyValuePair<DayOfWeek,List<ScheduleEntity>> pair in Factory._schedule.Classes)
+            foreach(KeyValuePair<DayOfWeek,List<ScheduleEntity>> pair in sched.Classes)
             {
                 foreach (ScheduleEntity se in pair.Value)
                     List1.Add(se.Name);

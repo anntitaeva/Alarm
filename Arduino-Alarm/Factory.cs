@@ -23,7 +23,7 @@ namespace Arduino_Alarm
 
         }
 
-        public static FinalSchedule _schedule;
+        private static FinalSchedule _schedule;
 
         public static FinalSchedule GetIt()
         {
