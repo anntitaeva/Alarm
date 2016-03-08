@@ -20,15 +20,19 @@ namespace Arduino_Alarm
     public partial class PrioritiesView : Window
     {
         PrioritiesViewModel _pw = new PrioritiesViewModel();
+        public Action OnSelectionChanged;
+
         public PrioritiesView()
         {
             InitializeComponent();
             DataContext = _pw;
-            _pw.GetList1();
         }
 
         private void OK_Click(object sender, RoutedEventArgs e)
         {
+            if (OnSelectionChanged != null)
+                OnSelectionChanged();
+
             this.Close();
         }
 
@@ -39,10 +43,19 @@ namespace Arduino_Alarm
 
         private void button2_Click(object sender, RoutedEventArgs e)
         {
-            _pw.GetList2();
+            //_pw.GetList2();
             listBox_Copy.Visibility = Visibility.Visible;
             listBox.Visibility = Visibility.Hidden;
-            button2.Content = "<<";
+            button2.Visibility = Visibility.Hidden;
+            button.Visibility = Visibility.Visible;
+        }
+
+        private void button_Click(object sender, RoutedEventArgs e)
+        {
+            listBox_Copy.Visibility = Visibility.Hidden;
+            listBox.Visibility = Visibility.Visible;
+            button2.Visibility = Visibility.Visible;
+            button.Visibility = Visibility.Hidden;
         }
     }
 }

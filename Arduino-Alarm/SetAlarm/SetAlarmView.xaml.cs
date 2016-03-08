@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Arduino_Alarm.SetAlarm;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,9 +20,12 @@ namespace Arduino_Alarm
     /// </summary>
     public partial class SetAlarmView : Window
     {
+        SetAlarmViewModel setalarm = new SetAlarmViewModel();
         public SetAlarmView()
         {
+            DataContext = setalarm;
             InitializeComponent();
+            
         }
 
         private void OK_Click(object sender, RoutedEventArgs e)
