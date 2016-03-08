@@ -12,6 +12,9 @@ namespace Arduino_Alarm.SetAlarm.GetSchedule
 
         public string Subgroup { get; set; }
         public string Minor { get; set; }
+        public string Address { get; set;}
+        public string TimeToReady { get; set; }
+        public string Transport { get; set; }
 
         public Settings()
         {
@@ -51,6 +54,9 @@ namespace Arduino_Alarm.SetAlarm.GetSchedule
             {
                 Subgroup = settings[0];
                 Minor = settings[1];
+                Address = settings[2];
+                TimeToReady = settings[3];
+                Transport = settings[4];
             }
             catch
             {

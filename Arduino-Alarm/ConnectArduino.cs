@@ -11,12 +11,13 @@ namespace Arduino_Alarm.SetAlarm
     {
         SerialPort arduinoBoard = new SerialPort();
         bool ArduinoPortFound = false;
-  
+        public int Prior { get; set; }
 
+        
         private void SendtoArdu()
         {
             DetectArduino();
-            arduinoBoard.Write("");
+            arduinoBoard.Write(Prior.ToString());
 
             System.Threading.Thread.Sleep(500);
             arduinoBoard.Close();

@@ -30,7 +30,8 @@ namespace Arduino_Alarm.Manual_Settings
         public void SaveChanges()
         {
             Check();
-            Factory.Time = SetTime; 
+            Factory.Time = SetTime;
+            Factory.Day = DateTime.Now.AddDays(1).DayOfWeek;
         }
 
     }
