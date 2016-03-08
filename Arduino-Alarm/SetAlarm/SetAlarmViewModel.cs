@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 namespace Arduino_Alarm.SetAlarm
 {
     class SetAlarmViewModel:Factory, INotifyPropertyChanged //наследует первоначальные настройки, если изменяются, то файл перезаписывается, только это доделать
-    {
+    { //переделать, не загонять все в конструктор
         InitialData data = new InitialData();
 
         public string Address { get; set; }

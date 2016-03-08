@@ -20,15 +20,19 @@ namespace Arduino_Alarm
     public partial class PrioritiesView : Window
     {
         PrioritiesViewModel _pw = new PrioritiesViewModel();
+        public Action OnSelectionChanged;
+
         public PrioritiesView()
         {
             InitializeComponent();
             DataContext = _pw;
-            //_pw.GetList1();
         }
 
         private void OK_Click(object sender, RoutedEventArgs e)
         {
+            if (OnSelectionChanged != null)
+                OnSelectionChanged();
+
             this.Close();
         }
 
