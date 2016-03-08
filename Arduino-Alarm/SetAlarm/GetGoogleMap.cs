@@ -8,5 +8,6 @@ namespace Arduino_Alarm.SetAlarm
 {
     class GetGoogleMap
     {
+
     }
 }

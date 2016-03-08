@@ -47,7 +47,19 @@ namespace Arduino_Alarm.SetAlarm.GetSchedule
             return settings;
         }
 
-        void SubgroupAndMinor()
+        public static void ChangeSettings(string subgroup, string minor, string adress, string time_to_ready, string transport)
+        {
+            Encoding enc = Encoding.GetEncoding(1251);
+            try
+            {       
+                string[] settings = new string[]{subgroup, minor, adress, time_to_ready, transport};
+                File.WriteAllLines(@"..\\..\\Settings.txt", settings, enc);
+            }
+            catch { }
+
+        }
+
+        private void SubgroupAndMinor()
         {
             string[] settings = GetSettings();
             try
