@@ -7,7 +7,7 @@ using System.Data;
 
 namespace Arduino_Alarm.SetAlarm.GetSchedule
 {
-    class FinalSchedule
+    class FinalSchedule:Factory
     {
         public Dictionary<DayOfWeek, List<ScheduleEntity>> Classes { get; set; }
 
@@ -25,7 +25,7 @@ namespace Arduino_Alarm.SetAlarm.GetSchedule
                 {
 
                     DayOfWeek day = GetDay(dt.Rows[i].ItemArray[0].ToString());
-                    var set = new Settings();
+                    var set = Factory.GetSettings(); 
 
                     string[] time_start = dt.Rows[i].ItemArray[1].ToString().Split(':');
                     string[] time_finish = dt.Rows[i].ItemArray[2].ToString().Split(':');

@@ -15,6 +15,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Arduino_Alarm.SetAlarm;
 using Arduino_Alarm.SetAlarm.GetSchedule;
+using Arduino_Alarm.EnterSettings;
 
 namespace Arduino_Alarm
 {
@@ -24,12 +25,12 @@ namespace Arduino_Alarm
     public partial class MainWindow : Window
     {
         Window _iwindow;
-        //FinalSchedule schedule;
+        
 
         public MainWindow()
         {
             InitializeComponent();
-            //schedule = new FinalSchedule();
+ 
         }
 
         private void Manual_Set_Click(object sender, RoutedEventArgs e)
@@ -44,7 +45,7 @@ namespace Arduino_Alarm
 
         private void Set_Alarm_Click(object sender, RoutedEventArgs e)
         {
-            (_iwindow = new SetAlarmView()).ShowDialog();
+            (_iwindow = new SettingsView()).ShowDialog();
         }
 
     }

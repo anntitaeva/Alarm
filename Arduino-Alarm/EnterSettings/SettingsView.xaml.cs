@@ -13,15 +13,15 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace Arduino_Alarm
+namespace Arduino_Alarm.EnterSettings
 {
     /// <summary>
     /// Логика взаимодействия для Window1.xaml
     /// </summary>
-    public partial class SetAlarmView : Window
+    public partial class SettingsView : Window
     {
-        SetAlarmViewModel setalarm = new SetAlarmViewModel();
-        public SetAlarmView()
+        SettingsViewModel setalarm = new SettingsViewModel();
+        public SettingsView()
         {
             DataContext = setalarm;
             InitializeComponent();

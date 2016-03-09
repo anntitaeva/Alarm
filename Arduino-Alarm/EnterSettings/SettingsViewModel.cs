@@ -8,9 +8,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 
-namespace Arduino_Alarm.SetAlarm
+namespace Arduino_Alarm.EnterSettings
 {
-    class SetAlarmViewModel:Factory, INotifyPropertyChanged //наследует первоначальные настройки, если изменяются, то файл перезаписывается, только это доделать
+    class SettingsViewModel:Factory, INotifyPropertyChanged //наследует первоначальные настройки, если изменяются, то файл перезаписывается, только это доделать
     { //переделать, не загонять все в конструктор
         InitialData data = new InitialData();
 
@@ -28,7 +28,7 @@ namespace Arduino_Alarm.SetAlarm
 
         public event PropertyChangedEventHandler PropertyChanged;
 
-        public SetAlarmViewModel()
+        public SettingsViewModel()
         {
             Transport = data._transportMode;
             OnPropertyChanged("Transport");

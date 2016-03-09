@@ -94,10 +94,10 @@
     <Compile Include="GetSchedule\FinalSchedule.cs" />
     <Compile Include="GetSchedule\Settings.cs" />
     <Compile Include="Entities\ModificatedData.cs" />
-    <Compile Include="SetAlarm\SetAlarmView.xaml.cs">
-      <DependentUpon>SetAlarmView.xaml</DependentUpon>
+    <Compile Include="EnterSettings\SettingsView.xaml.cs">
+      <DependentUpon>SettingsView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="SetAlarm\SetAlarmViewModel.cs" />
+    <Compile Include="EnterSettings\SettingsViewModel.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -118,7 +118,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="SetAlarm\SetAlarmView.xaml">
+    <Page Include="EnterSettings\SettingsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
