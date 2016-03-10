@@ -25,14 +25,21 @@ namespace Arduino_Alarm
     public partial class MainWindow : Window
     {
         Window _iwindow;
-        
+        Settings set = new Settings();
 
         public MainWindow()
         {
             InitializeComponent();
+            set.OnOpenView += FirstTime;
+            
  
         }
-
+        private void FirstTime()
+        {
+            Manual_Set.IsEnabled = false;
+            Set_priorities.IsEnabled = false;
+            MessageBox.Show("Welcome! Please, first of all,enter data into 'Settings'. You also can change them whenever you want.", "Welcome!", MessageBoxButton.OK, MessageBoxImage.Information);
+        }
         private void Manual_Set_Click(object sender, RoutedEventArgs e)
         {
             (_iwindow = new ManualView()).ShowDialog();

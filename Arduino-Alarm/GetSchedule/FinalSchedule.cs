@@ -23,43 +23,46 @@ namespace Arduino_Alarm.SetAlarm.GetSchedule
             {
                 if (Check.CheckRow(dt.Rows[i]))
                 {
-
+                    
                     DayOfWeek day = GetDay(dt.Rows[i].ItemArray[0].ToString());
-                    var set = Factory.GetSettings(); 
+                    var set = Factory.GetSettings();
+                    
 
-                    string[] time_start = dt.Rows[i].ItemArray[1].ToString().Split(':');
-                    string[] time_finish = dt.Rows[i].ItemArray[2].ToString().Split(':');
-                    string name = dt.Rows[i].ItemArray[3].ToString();
-                    string type = dt.Rows[i].ItemArray[4].ToString();
-                    string adress = dt.Rows[i].ItemArray[5].ToString();
-                    string room = dt.Rows[i].ItemArray[6].ToString();
-                    string tutor = dt.Rows[i].ItemArray[7].ToString();
+              
+                        string[] time_start = dt.Rows[i].ItemArray[1].ToString().Split(':');
+                        string[] time_finish = dt.Rows[i].ItemArray[2].ToString().Split(':');
+                        string name = dt.Rows[i].ItemArray[3].ToString();
+                        string type = dt.Rows[i].ItemArray[4].ToString();
+                        string adress = dt.Rows[i].ItemArray[5].ToString();
+                        string room = dt.Rows[i].ItemArray[6].ToString();
+                        string tutor = dt.Rows[i].ItemArray[7].ToString();
 
-                    DateTime today = DateTime.Today;
-                    int daysUntil = ((int)day - (int)today.DayOfWeek + 7) % 7;
-                    DateTime nextDate = today.AddDays(daysUntil);
+                        DateTime today = DateTime.Today;
+                        int daysUntil = ((int)day - (int)today.DayOfWeek + 7) % 7;
+                        DateTime nextDate = today.AddDays(daysUntil);
 
-                    ScheduleEntity day_classes = new ScheduleEntity()
-                    {
-                        Start = new DateTime(nextDate.Year, nextDate.Month, nextDate.Day, int.Parse(time_start[0]), int.Parse(time_start[1]), 0),
-                        Finish = new DateTime(nextDate.Year, nextDate.Month, nextDate.Day, int.Parse(time_finish[0]), int.Parse(time_finish[1]), 0),
-                        Name = name,
-                        Type = type,
-                        Adress = adress,
-                        Room = room,
-                        Tutor = tutor,
-                        Group = "ББИ145",
-                        SubGroup = set.Subgroup,
-                        Minor = set.Minor,
-                        Priority = 0
-                    };
+                        ScheduleEntity day_classes = new ScheduleEntity()
+                        {
+                            Start = new DateTime(nextDate.Year, nextDate.Month, nextDate.Day, int.Parse(time_start[0]), int.Parse(time_start[1]), 0),
+                            Finish = new DateTime(nextDate.Year, nextDate.Month, nextDate.Day, int.Parse(time_finish[0]), int.Parse(time_finish[1]), 0),
+                            Name = name,
+                            Type = type,
+                            Adress = adress,
+                            Room = room,
+                            Tutor = tutor,
+                            Group = "ББИ145",
+                            SubGroup = set.Subgroup,
+                            Minor = set.Minor,
+                            Priority = 0
+                        };
 
-                    if (Classes.ContainsKey(day))
-                    {
-                        Classes[day].Add(day_classes);
-                    }
-                    else
-                        Classes.Add(day, new List<ScheduleEntity> { day_classes });
+                        if (Classes.ContainsKey(day))
+                        {
+                            Classes[day].Add(day_classes);
+                        }
+                        else
+                            Classes.Add(day, new List<ScheduleEntity> { day_classes });
+                    
                 }
             }
         }

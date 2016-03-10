@@ -24,7 +24,7 @@ namespace Arduino_Alarm
         {
             //view.OnSelectionChanged += Update;
             var set = Factory.GetSettings();
-            set.OnOpenSettings += Open;
+            //set.OnOpenSettings += Open;
         }
 
         private void Open()

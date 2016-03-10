@@ -16,7 +16,8 @@ namespace Arduino_Alarm.SetAlarm.GetSchedule
         public string TimeToReady { get; set; }
         public string Transport { get; set; }
 
-        public Action OnOpenSettings;
+        public Action OnReadySettings;
+        public Action OnOpenView;
 
         public Settings()
         {
@@ -66,16 +67,22 @@ namespace Arduino_Alarm.SetAlarm.GetSchedule
             string[] settings = GetSettings();
             try
             {
-                if (settings.Any(c => c == null))
-                    if (OnOpenSettings != null)
-                        OnOpenSettings();
-                else
+                
+                if (settings.Count()==5||settings.Any(c=>c!=null))
                 {
                     Subgroup = Convert.ToInt16(settings[0]);
                     Minor = settings[1];
                     Address = settings[2];
                     TimeToReady = settings[3];
                     Transport = settings[4];
+
+                    if (OnReadySettings != null)
+                        OnReadySettings();
+                }
+                else
+                {
+                    if (OnOpenView != null)
+                        OnOpenView();
                 }
             }
             catch
