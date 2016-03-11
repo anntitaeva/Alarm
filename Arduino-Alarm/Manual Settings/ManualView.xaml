@@ -16,20 +16,45 @@
                 <GradientStop Offset="1" Color="#FF763232" />
             </LinearGradientBrush>
         </Grid.Background>
-        <Label x:Name="label" Content="SET TIME" FontSize="32"
-               Foreground="White" HorizontalAlignment="Left" Margin="10,78,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="label" 
+               Content="SET TIME" 
+               FontSize="32"
+               Foreground="White" 
+               HorizontalAlignment="Center" 
+               Margin="0,20,0,0" VerticalAlignment="Top"/>
         <xctk:MaskedTextBox 
          x:Name="MaskedTextBox"                                
             CaretIndex="0" 
             Mask="00:00"
             Text="{Binding SetTime}"
-            Margin="178,0,30,152" 
-            FontSize="14.667" Height="23" VerticalAlignment="Bottom" TextAlignment="Center"
+            Margin="0,0,0,0" 
+            FontSize="32" Height="48"
+            VerticalAlignment="Center"
+            HorizontalAlignment="Center"
+            TextAlignment="Center"
             Background="#FFE6D673"
-            BorderBrush="#FFD48E8E" FontFamily="Arial Unicode MS" Foreground="#FFD68080" BorderThickness="0"/>
-        <Button x:Name="OK" Content="OK" HorizontalAlignment="Left" Margin="10,206,0,0" VerticalAlignment="Top" Width="120" Background="#FF8B5656"
-            BorderBrush="#FFD48E8E" BorderThickness="0" Foreground="White" Click="OK_Click"/>
-        <Button x:Name="Cancel" Content="Cancel" HorizontalAlignment="Left" Margin="162,206,0,0" VerticalAlignment="Top" Width="120" Background="#FF8B5656"
-            BorderBrush="#FFD48E8E" Foreground="White" Click="Cancel_Click"/>
+            BorderBrush="#FFD48E8E" FontFamily="Arial Unicode MS" Foreground="White" BorderThickness="0" Width="80"/>
+        <Button x:Name="OK" Content="OK" 
+                HorizontalAlignment="Left"
+                Margin="30,206,0,0" 
+                VerticalAlignment="Top" 
+                Width="108"
+                Height="41" 
+                Background="#FF62E08A"
+                 BorderBrush="#FFD48E8E"
+                Foreground="White"
+                BorderThickness="0" 
+                Click="OK_Click"/>
+        <Button x:Name="Cancel" 
+                Content="Cancel" 
+                HorizontalAlignment="Right" 
+                Margin="0,206,30,0" 
+                VerticalAlignment="Top" 
+                Width="108" 
+                Height="41"
+                Background="#FFB155BF"
+                BorderBrush="#FFD48E8E"
+                Foreground="White" 
+                Click="Cancel_Click"/>
     </Grid>
 </Window>
