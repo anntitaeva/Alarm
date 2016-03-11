@@ -36,7 +36,7 @@
             BorderBrush="#FFD48E8E" FontFamily="Arial Unicode MS" Foreground="White" BorderThickness="0" Width="80"/>
         <Button x:Name="OK" Content="OK" 
                 HorizontalAlignment="Left"
-                Margin="30,206,0,0" 
+                Margin="35,206,0,0" 
                 VerticalAlignment="Top" 
                 Width="108"
                 Height="41" 
