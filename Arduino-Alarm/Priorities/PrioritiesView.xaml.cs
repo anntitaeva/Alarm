@@ -21,6 +21,7 @@ namespace Arduino_Alarm
     {
         PrioritiesViewModel _pw = new PrioritiesViewModel();
         public Action OnSelectionChanged;
+   
 
         public PrioritiesView()
         {
@@ -32,6 +33,7 @@ namespace Arduino_Alarm
         {
             if (OnSelectionChanged != null)
                 OnSelectionChanged();
+            _pw.Update();
 
             this.Close();
         }
@@ -43,7 +45,8 @@ namespace Arduino_Alarm
 
         private void button2_Click(object sender, RoutedEventArgs e)
         {
-            //_pw.GetList2();
+            _pw.GetList2();
+            
             listBox_Copy.Visibility = Visibility.Visible;
             listBox.Visibility = Visibility.Hidden;
             button2.Visibility = Visibility.Hidden;

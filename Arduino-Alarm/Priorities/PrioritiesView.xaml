@@ -49,22 +49,24 @@
                  Width="126"
                  Height="137"
                  Margin="91,75,0,0"
-                 ItemsSource="{Binding List1}"
+                 
                  HorizontalAlignment="Left"
                  BorderBrush="Transparent"
                  VerticalAlignment="Top"
                  Background="Transparent"
-                 SelectedItem="{Binding ItemsSelected}" SelectionMode="Multiple">
-   
+                 SelectedItem="{Binding Path=ItemsSelected, UpdateSourceTrigger=PropertyChanged}"   ItemsSource="{Binding List1, UpdateSourceTrigger=PropertyChanged}"
+                 SelectionMode="Multiple">
+  
         </ListBox>
         <ListBox x:Name="listBox_Copy"
                  Width="120"
                  Height="137"
                  Margin="162,60,0,0"
                  HorizontalAlignment="Left"
-                 ItemsSource="{Binding List2}"
                  SelectionMode="Multiple"
                  SelectedItem="{Binding ItemsSelected2}"
+                 ItemsSource="{Binding Path=List2,UpdateSourceTrigger=PropertyChanged}"
+                 
                  VerticalAlignment="Top" BorderBrush="#FF89A0CB" Visibility="Hidden">
             <ListBox.Background>
                 <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1">

@@ -1,4 +1,5 @@
-﻿using Arduino_Alarm.SetAlarm.GetSchedule;
+﻿using Arduino_Alarm.SetAlarm.GetGoogle;
+using Arduino_Alarm.SetAlarm.GetSchedule;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,13 +8,17 @@ using System.Threading.Tasks;
 
 namespace Arduino_Alarm.SetAlarm
 {
-    class CalculateTime: Factory //может надо будет переписать в зависимости от логики работы проги
+    class CalculateTime //может надо будет переписать в зависимости от логики работы проги
     {
         static FinalSchedule _schedule=Factory.GetIt();
         public ConnectArduino ardu;
 
-        //запускает гетгугл, использует данные из сеттингс для подсчета времени
+        public CalculateTime()
+        {
+            var google = new GetGoogleMap();
+        }
 
+        
         private static List<ModificatedData> _finaldata;
         public static List<ModificatedData> Calculate()//изменить время с учетом гетгугл
         {
@@ -33,6 +38,7 @@ namespace Arduino_Alarm.SetAlarm
                         };
                         _finaldata.Add(newdata);
                     }
+
                 else { 
                     foreach (KeyValuePair<DayOfWeek, List<ScheduleEntity>> data in _schedule.Classes)
                     {

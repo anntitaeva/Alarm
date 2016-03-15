@@ -87,10 +87,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Entities\InitialData.cs" />
     <Compile Include="Entities\ScheduleEntity.cs" />
     <Compile Include="ConnectArduino.cs" />
     <Compile Include="Factory.cs" />
+    <Compile Include="MainWindowModel.cs" />
     <Compile Include="SetAlarm\CalculateTime.cs" />
     <Compile Include="SetAlarm\GetGoogle\GetGoogleMap.cs" />
     <Compile Include="GetSchedule\Check.cs" />

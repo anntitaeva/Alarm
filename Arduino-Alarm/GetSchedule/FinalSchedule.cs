@@ -26,9 +26,7 @@ namespace Arduino_Alarm.SetAlarm.GetSchedule
                     
                     DayOfWeek day = GetDay(dt.Rows[i].ItemArray[0].ToString());
                     var set = Factory.GetSettings();
-                    
 
-              
                         string[] time_start = dt.Rows[i].ItemArray[1].ToString().Split(':');
                         string[] time_finish = dt.Rows[i].ItemArray[2].ToString().Split(':');
                         string name = dt.Rows[i].ItemArray[3].ToString();
@@ -62,6 +60,8 @@ namespace Arduino_Alarm.SetAlarm.GetSchedule
                         }
                         else
                             Classes.Add(day, new List<ScheduleEntity> { day_classes });
+                    
+                    
                     
                 }
             }

@@ -25,16 +25,18 @@ namespace Arduino_Alarm
     public partial class MainWindow : Window
     {
         Window _iwindow;
-        Settings set = new Settings();
-
+        MainWindowModel mv = new MainWindowModel();
+       
+                  
         public MainWindow()
         {
+           
             InitializeComponent();
-            set.OnOpenView += FirstTime;
+            DataContext = mv;
             
- 
+                  
         }
-        private void FirstTime()
+        public void FirstTime()
         {
             Manual_Set.IsEnabled = false;
             Set_priorities.IsEnabled = false;
@@ -50,10 +52,11 @@ namespace Arduino_Alarm
             (_iwindow = new PrioritiesView()).ShowDialog();
         }
 
-        private void Set_Alarm_Click(object sender, RoutedEventArgs e)
+        private void Initial_Set_Click(object sender, RoutedEventArgs e)
         {
             (_iwindow = new SettingsView()).ShowDialog();
         }
+
 
     }
 }
