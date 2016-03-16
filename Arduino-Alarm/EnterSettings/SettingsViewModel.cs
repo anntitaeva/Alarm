@@ -41,7 +41,7 @@ namespace Arduino_Alarm.EnterSettings
         {
             var set = Factory.GetSettings();
 
-            Transport = new List<string>() { "Driving", "Bicycling", "Only subway", "All public transport" };
+            Transport = new List<string>() { "Driving", "Bicycling", "All public transport" };
             OnPropertyChanged("Transport");
 
             Minor = new List<string>() { "Урб", "Флс", "ММК", "НТ", "ПСБ", "ИАД", "Псх", "Лог", "Мен", "ФЭ" };
