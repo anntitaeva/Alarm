@@ -88,7 +88,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Entities\ScheduleEntity.cs" />
-    <Compile Include="ConnectArduino.cs" />
+    <Compile Include="SetAlarm\ConnectArduino.cs" />
     <Compile Include="Factory.cs" />
     <Compile Include="MainWindowModel.cs" />
     <Compile Include="SetAlarm\CalculateTime.cs" />

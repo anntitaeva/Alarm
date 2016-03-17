@@ -33,18 +33,21 @@ namespace Arduino_Alarm
            
             InitializeComponent();
             DataContext = mv;
+            mv.OnOpenSettings += Hello;
             
                   
         }
-        public void FirstTime()
+
+        public void Hello()
         {
-            Manual_Set.IsEnabled = false;
-            Set_priorities.IsEnabled = false;
-            MessageBox.Show("Welcome! Please, first of all,enter data into 'Settings'. You also can change them whenever you want.", "Welcome!", MessageBoxButton.OK, MessageBoxImage.Information);
+            MessageBox.Show("Hello! Try our alarm. Fisrt open settings.", "Hello!", MessageBoxButton.OK, MessageBoxImage.Information);
+            
         }
+      
         private void Manual_Set_Click(object sender, RoutedEventArgs e)
         {
             (_iwindow = new ManualView()).ShowDialog();
+
         }
 
         private void Set_priorities_Click(object sender, RoutedEventArgs e)
@@ -57,6 +60,11 @@ namespace Arduino_Alarm
             (_iwindow = new SettingsView()).ShowDialog();
         }
 
-
+        private void Set_Alarm_Click(object sender, RoutedEventArgs e)
+        {
+            var start = new CalculateTime();
+            start.Calculate();
+            start.Run();
+        }
     }
 }

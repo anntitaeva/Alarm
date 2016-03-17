@@ -31,7 +31,7 @@
                 Content="Set Alarm"
                 ForceCursor="False"
                 Foreground="White"
-                OpacityMask="Black"  />
+                OpacityMask="Black" Click="Set_Alarm_Click"  />
         <Button x:Name="Initial_Set"
                 Width="120"
                 Height="43"

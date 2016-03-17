@@ -7,7 +7,7 @@ using System.Net.Http;
 using Newtonsoft.Json;
 using Arduino_Alarm.SetAlarm.GetSchedule;
 
-namespace Arduino_Alarm.SetAlarm.GetGoogle
+namespace Arduino_Alarm.SetAlarm.GetGoogle //может конструктор сделать асинк
 {
     class GetGoogleMap
     {

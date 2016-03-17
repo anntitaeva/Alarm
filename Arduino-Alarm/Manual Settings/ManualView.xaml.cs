@@ -21,6 +21,7 @@ namespace Arduino_Alarm.Manual_Settings
     public partial class ManualView : Window
     {
         ManualViewModel _vm = new ManualViewModel();
+        
         public ManualView()
         {
             InitializeComponent();
@@ -31,7 +32,10 @@ namespace Arduino_Alarm.Manual_Settings
         {
             _vm.SaveChanges();
             if (_vm.close == true)
+            {
                 this.Close();
+                
+            }
            
         }
 

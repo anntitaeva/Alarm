@@ -27,6 +27,23 @@ namespace Arduino_Alarm
         {
             InitializeComponent();
             DataContext = _pw;
+            listBox.SelectionChanged += ListBoxSelectionChanged;
+        }
+
+        private void ListBoxSelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var listBox = sender as ListBox;
+            if (listBox == null) return;
+
+            var viewModel = listBox.DataContext as PrioritiesViewModel;
+            if (viewModel == null) return;
+
+            viewModel.ItemsSelected.Clear();
+
+            foreach (string item in listBox.SelectedItems)
+            {
+                viewModel.ItemsSelected.Add(item);
+            }
         }
 
         private void OK_Click(object sender, RoutedEventArgs e)

@@ -38,7 +38,14 @@ namespace Arduino_Alarm.Manual_Settings
         {
             Check();
             Factory.Time = SetTime;
-            Factory.Day = DateTime.Now.AddDays(1).DayOfWeek;
+
+            string[] st = SetTime.Split(new char[] { ':' });
+            int Hours = Convert.ToInt16(st[0]);
+            int Min = Convert.ToInt16(st[1]);
+
+            if (Hours < DateTime.Now.Hour|| (Hours==DateTime.Now.Hour&& Min <= DateTime.Now.Minute))
+                Factory.Day = DateTime.Now.AddDays(1).DayOfWeek;
+            else Factory.Day = DateTime.Now.DayOfWeek;
         }
 
     }

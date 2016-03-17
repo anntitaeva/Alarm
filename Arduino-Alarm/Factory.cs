@@ -14,15 +14,6 @@ namespace Arduino_Alarm
         public static DayOfWeek Day { get; set; }
        
 
-        private static ConnectArduino _startconnection;
-
-        public static ConnectArduino Start()
-        {
-            if (_startconnection == null)
-                _startconnection = new ConnectArduino();
-            return _startconnection;
-
-        }
 
         private static FinalSchedule _schedule;
 

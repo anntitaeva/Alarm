@@ -14,7 +14,7 @@ namespace Arduino_Alarm.SetAlarm
         public int Prior { get; set; }
 
         
-        private void SendtoArdu()
+        public ConnectArduino(int prior)
         {
             DetectArduino();
             arduinoBoard.Write(Prior.ToString());
