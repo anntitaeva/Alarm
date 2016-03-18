@@ -81,7 +81,7 @@ namespace Arduino_Alarm
             //}
             if (ItemSelected != null)
                 list.Add(ItemSelected);
-            else list.Add("Nothing");
+            //else list.Add("Nothing");
             //list.Add("Nothing");
             return list;
         }
