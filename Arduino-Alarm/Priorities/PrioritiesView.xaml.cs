@@ -43,7 +43,8 @@ namespace Arduino_Alarm
 
         private void button2_Click(object sender, RoutedEventArgs e)
         {
-            //_pw.GetList2();
+            _pw.GetFinalList();
+
             listBox_Copy.Visibility = Visibility.Visible;
             listBox.Visibility = Visibility.Hidden;
             button2.Visibility = Visibility.Hidden;
@@ -56,6 +57,11 @@ namespace Arduino_Alarm
             listBox.Visibility = Visibility.Visible;
             button2.Visibility = Visibility.Visible;
             button.Visibility = Visibility.Hidden;
+        }
+
+        private void listBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            _pw.ItemSelected = "Hey";
         }
     }
 }

@@ -29,9 +29,14 @@ namespace Arduino_Alarm.Manual_Settings
 
         public void SaveChanges()
         {
-            Check();
+            close = Check();
             Factory.Time = SetTime;
             Factory.Day = DateTime.Now.AddDays(1).DayOfWeek;
+        }
+
+        public void Error()
+        {
+            MessageBox.Show("Error! Fill the field", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
         }
 
     }

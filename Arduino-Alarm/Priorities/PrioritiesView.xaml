@@ -41,7 +41,7 @@
                  ItemsSource="{Binding List1}"
                  HorizontalAlignment="Left"
                  VerticalAlignment="Top"
-                 SelectedItem="{Binding ItemsSelected}" SelectionMode="Multiple">
+                 SelectedItem="{Binding ItemSelected}" SelectionMode="Single" SelectionChanged="listBox_SelectionChanged">
             <ListBox.Background>
                 <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1">
                     <GradientStop Offset="0.368" Color="#FF3A1D1D" />

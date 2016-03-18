@@ -20,6 +20,7 @@ namespace Arduino_Alarm.Manual_Settings
     /// </summary>
     public partial class ManualView : Window
     {
+
         ManualViewModel _vm = new ManualViewModel();
         public ManualView()
         {
@@ -29,9 +30,16 @@ namespace Arduino_Alarm.Manual_Settings
 
         private void OK_Click(object sender, RoutedEventArgs e)
         {
-            _vm.SaveChanges();
-            if (_vm.close == true)
-                this.Close();
+            try
+            {
+                _vm.SaveChanges();
+                if (_vm.close == true)
+                    this.Close();
+            }
+            catch
+            {
+                _vm.Error();
+            }
            
         }
 

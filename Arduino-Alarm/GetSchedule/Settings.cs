@@ -66,9 +66,11 @@ namespace Arduino_Alarm.SetAlarm.GetSchedule
             string[] settings = GetSettings();
             try
             {
-                if (settings.Any(c => c == null))
+                if (settings.Any(c => c == null) || settings.Length < 5)
+                {
                     if (OnOpenSettings != null)
                         OnOpenSettings();
+                }
                 else
                 {
                     Subgroup = Convert.ToInt16(settings[0]);
@@ -80,7 +82,7 @@ namespace Arduino_Alarm.SetAlarm.GetSchedule
             }
             catch
             {
-
+               
             }
         }
     }
