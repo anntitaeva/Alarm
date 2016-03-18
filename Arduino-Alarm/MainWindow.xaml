@@ -31,7 +31,7 @@
                 Content="Set Alarm"
                 ForceCursor="False"
                 Foreground="White"
-                OpacityMask="Black" Click="Set_Alarm_Click" />
+                OpacityMask="Black" Click="Set_Alarm_Click"  />
         <Button x:Name="Initial_Set"
                 Width="120"
                 Height="43"
@@ -40,10 +40,10 @@
                 VerticalAlignment="Top"
                 Background="#FFB155BF"
                 BorderBrush="#FFD48E8E"
-                Content="Initian Settings"
+                Content="Initial Settings"
                 ForceCursor="False"
                 Foreground="White"
-                OpacityMask="Black"  />
+                OpacityMask="Black" Click="Initial_Set_Click"  />
         <Button x:Name="Set_priorities"
                 Grid.ColumnSpan="2"
                 Width="212"

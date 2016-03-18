@@ -25,17 +25,29 @@ namespace Arduino_Alarm
     public partial class MainWindow : Window
     {
         Window _iwindow;
-        
-
+        MainWindowModel mv = new MainWindowModel();
+       
+                  
         public MainWindow()
         {
+           
             InitializeComponent();
- 
+            DataContext = mv;
+            mv.OnOpenSettings += Hello;
+            
+                  
         }
 
+        public void Hello()
+        {
+            MessageBox.Show("Hello! Try our alarm. Fisrt open settings.", "Hello!", MessageBoxButton.OK, MessageBoxImage.Information);
+            
+        }
+      
         private void Manual_Set_Click(object sender, RoutedEventArgs e)
         {
             (_iwindow = new ManualView()).ShowDialog();
+
         }
 
         private void Set_priorities_Click(object sender, RoutedEventArgs e)
@@ -43,10 +55,16 @@ namespace Arduino_Alarm
             (_iwindow = new PrioritiesView()).ShowDialog();
         }
 
-        private void Set_Alarm_Click(object sender, RoutedEventArgs e)
+        private void Initial_Set_Click(object sender, RoutedEventArgs e)
         {
             (_iwindow = new SettingsView()).ShowDialog();
         }
 
+        private void Set_Alarm_Click(object sender, RoutedEventArgs e)
+        {
+            var start = new CalculateTime();
+            start.Calculate();
+            start.Run();
+        }
     }
 }
