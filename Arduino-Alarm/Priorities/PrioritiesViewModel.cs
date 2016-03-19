@@ -12,22 +12,25 @@ namespace Arduino_Alarm
 {
     class PrioritiesViewModel : Factory, INotifyPropertyChanged //переделать немного поля, добавить айнотифай
     {
+        public event PropertyChangedEventHandler PropertyChanged;
         public List<string> List1 { get; set; }
         public List<string> ItemsSelected { get; set; }
-        public string ItemSelected { get; set; }
+
+
         public List<string> ItemsSelected2 { get; set; }
         public List<string> List2 { get; set; }
 
        // PrioritiesView view = new PrioritiesView();
         FinalSchedule sched = Factory.GetIt();
         SettingsView viewset = new SettingsView();
-        public event PropertyChangedEventHandler PropertyChanged;
+        
  
         public PrioritiesViewModel()
         {
             //view.OnSelectionChanged += Update;
             var set = Factory.GetSettings();
             List1 = GetList1();
+            List2 = GetList2();
             set.OnOpenSettings += Open;
         }
 
@@ -68,7 +71,7 @@ namespace Arduino_Alarm
 
         }
 
-        private List<string> GetList2()
+        public List<string> GetList2()
         {
             List<string> list = new List<string>();
             //foreach (string s in List1)
@@ -79,10 +82,9 @@ namespace Arduino_Alarm
             //            list.Add(s);
             //    }
             //}
-            if (ItemSelected != null)
-                list.Add(ItemSelected);
-            //else list.Add("Nothing");
-            //list.Add("Nothing");
+
+            //foreach (var s in ItemsSelected)
+            //    list.Add(s);
             return list;
         }
 

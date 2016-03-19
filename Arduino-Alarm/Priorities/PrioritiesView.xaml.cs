@@ -24,8 +24,8 @@ namespace Arduino_Alarm
 
         public PrioritiesView()
         {
-            InitializeComponent();
             DataContext = _pw;
+            InitializeComponent();
         }
 
         private void OK_Click(object sender, RoutedEventArgs e)
@@ -44,6 +44,7 @@ namespace Arduino_Alarm
         private void button2_Click(object sender, RoutedEventArgs e)
         {
             _pw.GetFinalList();
+            listBox_Copy.ItemsSource = _pw.GetList2();
 
             listBox_Copy.Visibility = Visibility.Visible;
             listBox.Visibility = Visibility.Hidden;
@@ -59,9 +60,5 @@ namespace Arduino_Alarm
             button.Visibility = Visibility.Hidden;
         }
 
-        private void listBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            _pw.ItemSelected = "Hey";
-        }
     }
 }
