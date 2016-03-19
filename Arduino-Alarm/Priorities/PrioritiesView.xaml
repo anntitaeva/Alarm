@@ -23,8 +23,9 @@
                 Background="#FF8B5656"
                 BorderBrush="#FFD48E8E"
                 BorderThickness="0"
+                Click="OK_Click"
                 Content="OK"
-                Foreground="White" Click="OK_Click" />
+                Foreground="White" />
         <Button x:Name="Cancel"
                 Width="120"
                 Margin="162,224,0,0"
@@ -32,16 +33,17 @@
                 VerticalAlignment="Top"
                 Background="#FF8B5656"
                 BorderBrush="#FFD48E8E"
+                Click="Cancel_Click"
                 Content="Cancel"
-                Foreground="White" Click="Cancel_Click" />
+                Foreground="White" />
         <ListBox x:Name="listBox"
-                 Width="126"
+                 Width="234"
                  Height="137"
-                 Margin="10,60,0,0"
-                 ItemsSource="{Binding Path=List1}"
+                 Margin="19,62,0,0"
                  HorizontalAlignment="Left"
                  VerticalAlignment="Top"
-                 SelectedItem="{Binding Path=ItemsSelected, Mode=TwoWay}" SelectionMode="Multiple" >
+                 ItemsSource="{Binding Path=List1}"
+                 SelectionMode="Multiple">
             <ListBox.Background>
                 <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1">
                     <GradientStop Offset="0.368" Color="#FF3A1D1D" />
@@ -54,10 +56,11 @@
                  Height="137"
                  Margin="162,60,0,0"
                  HorizontalAlignment="Left"
-                 ItemsSource="{Binding List2}"
-                 SelectionMode="Multiple"
+                 VerticalAlignment="Top"
+                 BorderBrush="#FF89A0CB"
                  SelectedItem="{Binding ItemsSelected2}"
-                 VerticalAlignment="Top" BorderBrush="#FF89A0CB" Visibility="Hidden">
+                 SelectionMode="Multiple"
+                 Visibility="Hidden">
             <ListBox.Background>
                 <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1">
                     <GradientStop Offset="0.368" Color="#FF3A1D1D" />
@@ -72,34 +75,10 @@
                Content="CHOOSE SUBJECTS"
                Foreground="White" />
         <Label x:Name="label1"
-               Margin="5,34,0,0"
+               Margin="19,36,0,0"
                HorizontalAlignment="Left"
                VerticalAlignment="Top"
-               Content="Very important subjects"
+               Content="Alarm will work twice for choosen subjects"
                Foreground="White" />
-        <Label x:Name="label2"
-               Margin="168,34,0,0"
-               HorizontalAlignment="Left"
-               VerticalAlignment="Top"
-               Content="Important subjects"
-               Foreground="White" />
-        <Button x:Name="button2"
-                Width="26"
-                Margin="136,98,0,0"
-                HorizontalAlignment="Left"
-                VerticalAlignment="Top"
-                Background="#FF8B5656"
-                BorderBrush="#FFD48E8E"
-                BorderThickness="0"
-                Content="&gt;&gt;" Click="button2_Click" />
-        <Button x:Name="button" Content="&lt;&lt;"
-                Width="26"
-                Visibility="Hidden"
-                Margin="136,125,0,0"
-                HorizontalAlignment="Left"
-                VerticalAlignment="Top"
-                Background="#FF8B5656"
-                BorderBrush="#FFD48E8E"
-                BorderThickness="0" Click="button_Click"/>
     </Grid>
 </Window>

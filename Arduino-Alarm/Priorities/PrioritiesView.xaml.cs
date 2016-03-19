@@ -24,9 +24,29 @@ namespace Arduino_Alarm
 
         public PrioritiesView()
         {
-            DataContext = _pw;
             InitializeComponent();
+            DataContext = _pw;
+            listBox.SelectionChanged += ListBoxSelectionChanged;
         }
+
+        private void ListBoxSelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var listBox = sender as ListBox;
+            if (listBox == null) return;
+
+            
+            if (_pw == null) return;
+
+            if(_pw.ItemsSelected!=null)
+                _pw.ItemsSelected.Clear();
+
+            foreach (string item in listBox.SelectedItems)
+            {
+                _pw.ItemsSelected.Add(item);
+                _pw.WorkWithList();
+            }
+        }
+        
 
         private void OK_Click(object sender, RoutedEventArgs e)
         {
@@ -41,24 +61,7 @@ namespace Arduino_Alarm
             this.Close();
         }
 
-        private void button2_Click(object sender, RoutedEventArgs e)
-        {
-            _pw.GetFinalList();
-            listBox_Copy.ItemsSource = _pw.GetList2();
-
-            listBox_Copy.Visibility = Visibility.Visible;
-            listBox.Visibility = Visibility.Hidden;
-            button2.Visibility = Visibility.Hidden;
-            button.Visibility = Visibility.Visible;
-        }
-
-        private void button_Click(object sender, RoutedEventArgs e)
-        {
-            listBox_Copy.Visibility = Visibility.Hidden;
-            listBox.Visibility = Visibility.Visible;
-            button2.Visibility = Visibility.Visible;
-            button.Visibility = Visibility.Hidden;
-        }
+   
 
     }
 }

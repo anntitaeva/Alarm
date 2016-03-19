@@ -54,6 +54,7 @@ namespace Arduino_Alarm.SetAlarm
                             {
                                 try {
                                     string time = await google.GetGoogleInformation(sentity.Adress);
+                                    
                                     var t = Time(sentity, time);
                                 }
                                 catch { MessageBox.Show("Error with google"); }
@@ -71,7 +72,7 @@ namespace Arduino_Alarm.SetAlarm
                             }
                         }
                     }
-                    catch { MessageBox.Show("error in data"); }
+                    catch { MessageBox.Show("Something went wrong with Google Information. Be sure that you have Internet connection. If no, set alarm manually.","Error",MessageBoxButton.OK,MessageBoxImage.Error); }
                     
                 }
             }
@@ -82,6 +83,7 @@ namespace Arduino_Alarm.SetAlarm
         private Tuple<int,int> Time(ScheduleEntity ent, string time)
         {
             try {
+
                 string[] st = time.Split(new char[] { ' ' });
 
                 int hour = ent.Start.Hour;
