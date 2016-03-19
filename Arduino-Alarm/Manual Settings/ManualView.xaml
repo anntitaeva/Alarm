@@ -9,13 +9,7 @@
         Width="300"
         Height="300"
         mc:Ignorable="d">
-    <Grid>
-        <Grid.Background>
-            <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1">
-                <GradientStop Offset="0.368" Color="#FF3A1D1D" />
-                <GradientStop Offset="1" Color="#FF763232" />
-            </LinearGradientBrush>
-        </Grid.Background>
+    <Grid Background="#FF00527A">
         <Label x:Name="label" 
                Content="SET TIME" 
                FontSize="32"
@@ -27,33 +21,35 @@
             CaretIndex="0" 
             Mask="00:00"
             Text="{Binding SetTime}"
-            Margin="0,0,0,0" 
+            Margin="100,111,103,111" 
             FontSize="32" Height="48"
             VerticalAlignment="Center"
             HorizontalAlignment="Center"
             TextAlignment="Center"
-            Background="#FFE6D673"
-            BorderBrush="#FFD48E8E" FontFamily="Arial Unicode MS" Foreground="White" BorderThickness="0" Width="80"/>
+            Background="#19FFFFFF"
+            BorderBrush="White" FontFamily="Arial Unicode MS" Foreground="White" BorderThickness="1" Width="89"/>
         <Button x:Name="OK" Content="OK" 
                 HorizontalAlignment="Left"
                 Margin="35,206,0,0" 
                 VerticalAlignment="Top" 
                 Width="108"
                 Height="41" 
-                Background="#FF62E08A"
-                 BorderBrush="#FFD48E8E"
+                Background="#FF2EC1D5"
+                 BorderBrush="Transparent"
                 Foreground="White"
-                BorderThickness="0" 
+                BorderThickness="0"                
+                FontSize="18"
                 Click="OK_Click"/>
         <Button x:Name="Cancel" 
                 Content="Cancel" 
                 HorizontalAlignment="Right" 
                 Margin="0,206,30,0" 
                 VerticalAlignment="Top" 
+                FontSize="18"
                 Width="108" 
                 Height="41"
-                Background="#FFB155BF"
-                BorderBrush="#FFD48E8E"
+                Background="#FF2EC1D5"
+                BorderBrush="Transparent"
                 Foreground="White" 
                 Click="Cancel_Click"/>
     </Grid>
