@@ -28,11 +28,11 @@ namespace Arduino_Alarm.SetAlarm.GetSchedule
 
         private static bool CheckGroup(DataRow row)
         {
-            Settings settings = new Settings();
+            var settings = Factory.GetSettings();
             string groups = row.ItemArray[9].ToString();
             string potok = row.ItemArray[8].ToString();
 
-            if (groups.Contains("ББИ145") || potok.Contains("ББИ145") || potok.Contains(settings.Minor) || String.IsNullOrEmpty(potok) || String.IsNullOrEmpty(groups))
+            if (groups.Contains("ББИ145") || potok.Contains("ББИ145") || potok.Contains(settings.Minor) || (String.IsNullOrEmpty(potok) && String.IsNullOrEmpty(groups)))
                 return true;
             else return false;
 

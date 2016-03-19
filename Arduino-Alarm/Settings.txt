@@ -1,5 +1,5 @@
 2
-Флс
-Мурановская,4
-01:20
-All public transport
+ФЭ
+eq
+00:30
+Bicycling

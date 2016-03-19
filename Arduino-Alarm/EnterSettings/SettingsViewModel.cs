@@ -12,7 +12,7 @@ namespace Arduino_Alarm.EnterSettings
 {
     class SettingsViewModel: INotifyPropertyChanged 
     { //переделать, не загонять все в конструктор
-        
+
 
         public string Address { get; set; }
         public List<string> Transport { get; set; }
@@ -35,7 +35,7 @@ namespace Arduino_Alarm.EnterSettings
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
-        
+
 
         public SettingsViewModel()
         {
@@ -67,7 +67,7 @@ namespace Arduino_Alarm.EnterSettings
             if (set.Transport != null)
                 SelectedTransport = Transport.FindIndex(c => c == set.Transport);
             else SelectedTransport = -1;
-                
+  
         }
 
         public bool Check()
@@ -78,14 +78,38 @@ namespace Arduino_Alarm.EnterSettings
             int Hours = Convert.ToInt16(st[0]);
             int Min = Convert.ToInt16(st[1]);
             if (Hours > 24 || (Min > 59))
-            {
-                MessageBox.Show("Error! Enter time in format '23:15'", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-                close = false;
-            }
-            return close;
+            return false;
+
+            else return true;
+            
+                //if (SelectedGroup != -1 && SelectedMinor != -1 && SelectedTransport != -1 && Address != null && Address.Count() != 0 && TimeToReady != null && TimeToReady.Count() != 0)
+                //{
+                //    set = new Settings() { Address = Address, Transport = Transport[SelectedTransport], Minor = Minor[SelectedMinor], Subgroup = Subgroup[SelectedGroup], TimeToReady = TimeToReady };
+
+                //    set.ChangeSettings(set);
+                //}
+        }
+                
+        private void OnPropertyChanged(string name)
+        {
+            if (PropertyChanged != null)
+                PropertyChanged(this, new PropertyChangedEventArgs(name));
         }
 
-        public void SaveChanges()//сделать изменение через ивент!
+        public void Error()
+        {
+                MessageBox.Show("Error.Please enter the data", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+        }
+        
+
+        //public bool Check()
+        //{
+        //    if (SelectedGroup != -1 && SelectedMinor != -1 && SelectedTransport != -1 && Address != null && Address.Count() != 0 && TimeToReady != null && TimeToReady.Count() != 0)
+        //        return true;
+        //    else return false;
+        //}
+
+        public void SaveChanges()//сделать изменение через ивент! 
         {
             if (Check())
             {
@@ -98,12 +122,6 @@ namespace Arduino_Alarm.EnterSettings
                 else
                     MessageBox.Show("Error.Please enter the data", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
-        }
-
-        private void OnPropertyChanged(string name)
-        {
-            if (PropertyChanged != null)
-                PropertyChanged(this, new PropertyChangedEventArgs(name));
         }
 
     }

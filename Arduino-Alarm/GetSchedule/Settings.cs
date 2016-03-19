@@ -4,7 +4,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.IO;
-using System.Windows;
 
 namespace Arduino_Alarm.SetAlarm.GetSchedule
 {
@@ -17,14 +16,11 @@ namespace Arduino_Alarm.SetAlarm.GetSchedule
         public string TimeToReady { get; set; }
         public string Transport { get; set; }
 
-
-        public Action OnOpenView;
-        public Action OnChanged;
+        public Action OnOpenSettings;
 
         public Settings()
         {
             SubgroupAndMinor();
-
         }
 
         string[] GetSettings()
@@ -60,33 +56,34 @@ namespace Arduino_Alarm.SetAlarm.GetSchedule
             {
                 string[] settings = new string[] { set.Subgroup.ToString(), set.Minor, set.Address, set.TimeToReady, set.Transport };
                 File.WriteAllLines(@"..\\..\\Settings.txt", settings, enc);
-
-                if (OnChanged != null)
-                    OnChanged();
             }
             catch { }
 
         }
 
-        public void SubgroupAndMinor()
+        void SubgroupAndMinor()
         {
             string[] settings = GetSettings();
-            
-                
-                if (settings.Count()==5&&settings.Any(c=>c!=null))
+            try
+            {
+                if (settings.Any(c => c == null) || settings.Length < 5)
+                {
+                    if (OnOpenSettings != null)
+                        OnOpenSettings();
+                }
+                else
                 {
                     Subgroup = Convert.ToInt16(settings[0]);
                     Minor = settings[1];
                     Address = settings[2];
                     TimeToReady = settings[3];
                     Transport = settings[4];
-
                 }
-                else
-                {
-                OnOpenView();
-                }
-           
+            }
+            catch
+            {
+               
+            }
         }
     }
 }

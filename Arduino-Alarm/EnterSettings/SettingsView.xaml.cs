@@ -30,8 +30,19 @@ namespace Arduino_Alarm.EnterSettings
 
         private void OK_Click(object sender, RoutedEventArgs e)
         {
-            setalarm.SaveChanges();
-            this.Close();
+            try
+            {
+                if (setalarm.Check())
+                {
+                    setalarm.SaveChanges();
+                    this.Close();
+                }
+                else setalarm.Error();
+            }
+            catch
+            {
+                setalarm.Error();
+            }
         }
 
         private void Cancel_Click(object sender, RoutedEventArgs e)
