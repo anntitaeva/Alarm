@@ -30,7 +30,7 @@
             HorizontalAlignment="Center"
             TextAlignment="Center"
             Background="#19FFFFFF"
-            BorderBrush="White" FontFamily="Arial Unicode MS" Foreground="White" BorderThickness="1" Width="116" Grid.ColumnSpan="2"/>
+            BorderBrush="White" FontFamily="Arial Unicode MS" Foreground="White" BorderThickness="1" Width="128" Grid.ColumnSpan="2" Margin="132,104"/>
         <Button x:Name="OK" Content="OK" 
                 HorizontalAlignment="Left"
                 Margin="78,206,0,0" 
