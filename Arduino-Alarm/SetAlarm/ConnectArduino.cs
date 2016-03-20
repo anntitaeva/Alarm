@@ -15,17 +15,18 @@ namespace Arduino_Alarm.SetAlarm
         
 
         
-        public void Start(object prior)
+        public async Task Start(object prior)
         {
             
                 if (prior == null)
                     throw new NullReferenceException();
-            if ((prior is int))
+
+            //if ((prior is int))
             {
 
                 try
                 {
-                    DetectArduino();
+                    await DetectArduino();
                     arduinoBoard.Write(prior.ToString());
                 }
 
@@ -33,7 +34,7 @@ namespace Arduino_Alarm.SetAlarm
                 System.Threading.Thread.Sleep(500);
                 arduinoBoard.Close();
             }
-            else throw new ArgumentException();
+            //else throw new ArgumentException();
                 
             
             
@@ -41,7 +42,7 @@ namespace Arduino_Alarm.SetAlarm
 
         }
 
-        private void DetectArduino()
+        private async Task DetectArduino()
         {
            
                 string[] ports = SerialPort.GetPortNames();
@@ -52,7 +53,7 @@ namespace Arduino_Alarm.SetAlarm
                 {
                     arduinoBoard = new SerialPort(port, 9600);
                     
-                    if (ArduinoDetected())
+                    if (await ArduinoDetected())
                     {
                         ArduinoPortFound = true;
 
@@ -68,7 +69,7 @@ namespace Arduino_Alarm.SetAlarm
        
 
             if (ArduinoPortFound == false) return;
-            System.Threading.Thread.Sleep(500);
+            
 
             arduinoBoard.BaudRate = 9600;
             arduinoBoard.ReadTimeout = 1000;
@@ -85,17 +86,23 @@ namespace Arduino_Alarm.SetAlarm
 
 
 
-        private bool ArduinoDetected()
+        private async Task<bool> ArduinoDetected()
         {
             try
             {
                 arduinoBoard.Open();
-                System.Threading.Thread.Sleep(1000);
+                System.Threading.Thread.Sleep(500);
 
-                string returnMessage = arduinoBoard.ReadLine();
+                byte[] buffer = new byte[4096];
+                Task<int> returnMessage = arduinoBoard.BaseStream.ReadAsync(buffer,0,100);
+
                 arduinoBoard.Close();
+                int bytesRead = await returnMessage;
 
-                if (returnMessage.Contains("Info from Arduino"))
+                string data = Encoding.ASCII.GetString(buffer, 0, bytesRead);
+               
+
+                if (data.Contains("Info from Arduino"))
                 {
                     return true;
                 }
