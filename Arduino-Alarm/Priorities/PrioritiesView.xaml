@@ -5,54 +5,62 @@
         xmlns:local="clr-namespace:Arduino_Alarm"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         Title="Set priorities"
-        Width="504"
-        Height="350"
+        Width="300"
+        Height="300"
         mc:Ignorable="d">
-    <Grid Background="#FF00527A">
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="247*"/>
-            <ColumnDefinition Width="249*"/>
-        </Grid.ColumnDefinitions>
+    <Grid>
+        <Grid.Background>
+            <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1">
+                <GradientStop Offset="0.368" Color="#FF3A1D1D" />
+                <GradientStop Offset="1" Color="#FF763232" />
+            </LinearGradientBrush>
+        </Grid.Background>
         <Button x:Name="OK"
-               Width="108"
-                Height="41"
-                 Margin="0,0,136,20"
-                HorizontalAlignment="Right"
-                VerticalAlignment="Bottom"
-                Background="#FF2ED5AF"
-                BorderBrush="Transparent"
-                BorderThickness="0"
-                FontSize="18"
-                Content="OK"
-                Foreground="White" Click="OK_Click" Grid.Column="1" />
-        <Button x:Name="Cancel"
-                Width="108"
-                Height="41"
-                Margin="139,0,0,20"
+                Width="126"
+                Margin="10,224,0,0"
                 HorizontalAlignment="Left"
-                VerticalAlignment="Bottom"
-                Background="#FF2ED5AF"
-                BorderBrush="Transparent"
+                VerticalAlignment="Top"
+                Background="#FF8B5656"
+                BorderBrush="#FFD48E8E"
+                BorderThickness="0"
+                Click="OK_Click"
+                Content="OK"
+                Foreground="White" />
+        <Button x:Name="Cancel"
+                Width="120"
+                Margin="162,224,0,0"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Top"
+                Background="#FF8B5656"
+                BorderBrush="#FFD48E8E"
+                Click="Cancel_Click"
                 Content="Cancel"
-                FontSize="18"
-                Foreground="White" Click="Cancel_Click" />
+                Foreground="White" />
         <ListBox x:Name="listBox"
-                 Width="126"
+                 Width="234"
                  Height="137"
-                 Margin="95,100,0,0"
-                 ItemsSource="{Binding List1}"
+                 Margin="19,62,0,0"
                  HorizontalAlignment="Left"
                  VerticalAlignment="Top"
-                 SelectedItem="{Binding ItemSelected}" SelectionMode="Single" SelectionChanged="listBox_SelectionChanged" Background="{x:Null}" BorderBrush="{x:Null}"/>
+                 ItemsSource="{Binding Path=List1}"
+                 SelectionMode="Multiple">
+            <ListBox.Background>
+                <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1">
+                    <GradientStop Offset="0.368" Color="#FF3A1D1D" />
+                    <GradientStop Offset="1" Color="#FF763232" />
+                </LinearGradientBrush>
+            </ListBox.Background>
+        </ListBox>
         <ListBox x:Name="listBox_Copy"
                  Width="120"
                  Height="137"
                  Margin="162,60,0,0"
                  HorizontalAlignment="Left"
-                 ItemsSource="{Binding List2}"
-                 SelectionMode="Multiple"
+                 VerticalAlignment="Top"
+                 BorderBrush="#FF89A0CB"
                  SelectedItem="{Binding ItemsSelected2}"
-                 VerticalAlignment="Top" BorderBrush="#FF89A0CB" Visibility="Hidden" Grid.ColumnSpan="2">
+                 SelectionMode="Multiple"
+                 Visibility="Hidden">
             <ListBox.Background>
                 <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1">
                     <GradientStop Offset="0.368" Color="#FF3A1D1D" />
@@ -61,45 +69,16 @@
             </ListBox.Background>
         </ListBox>
         <Label x:Name="label"
+               Margin="91,10,0,0"
                HorizontalAlignment="Left"
                VerticalAlignment="Top"
                Content="CHOOSE SUBJECTS"
-               Margin="30,20,0,0"
-               FontSize="32"
-               Foreground="White" Grid.ColumnSpan="2"
- />
-        <Label x:Name="label1"
-               Margin="85,74,0,0"
-               HorizontalAlignment="Left"
-               VerticalAlignment="Top"
-               Content="Very important subjects"
                Foreground="White" />
-        <Label x:Name="label2"
-               Margin="35,74,0,0"
+        <Label x:Name="label1"
+               Margin="19,36,0,0"
                HorizontalAlignment="Left"
                VerticalAlignment="Top"
-               Content="Important subjects"
-               Foreground="White" Grid.Column="1" />
-        <Button x:Name="button2"
-                Width="46"
-                Margin="221,142,0,0"
-                HorizontalAlignment="Left"
-                VerticalAlignment="Top"
-                BorderThickness="0"
-                Content="" Click="button2_Click" BorderBrush="Transparent" Height="45" Grid.ColumnSpan="2" >
-            <Button.Background>
-                <ImageBrush ImageSource="/Arduino-Alarm;component/Resources/1458404680_DoubleChevronRight.png"/>
-            </Button.Background>
-        </Button>
-        <Button x:Name="button" Content="&lt;&lt;"
-                Width="26"
-                Visibility="Hidden"
-                Margin="136,125,0,0"
-                HorizontalAlignment="Left"
-                VerticalAlignment="Top"
-                Background="#FF8B5656"
-                BorderBrush="#FFD48E8E"
-                BorderThickness="0" Click="button_Click"/>
-        <Image Grid.Column="1" HorizontalAlignment="Right" Height="51" Margin="0,15,20,0" VerticalAlignment="Top" Width="57" Source="/Arduino-Alarm;component/Resources/alarm2.jpg"/>
+               Content="Alarm will work twice for chosen subjects"
+               Foreground="White" />
     </Grid>
 </Window>
