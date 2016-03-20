@@ -80,7 +80,8 @@ void loop()
   if (getinfo == "48")
   {
     setalarm();
-    resetData();
+    if (BUTTON_STATE==1)
+         resetData();
    
   }
 
@@ -91,7 +92,7 @@ void loop()
     {
       if ( repeat == false)
       {
-        delay(1 * minutes);
+        delay(5 * minutes);
         repeat = true;
         i = 0;
       }
