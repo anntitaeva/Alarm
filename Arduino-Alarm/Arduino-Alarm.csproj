@@ -169,10 +169,10 @@
     <Resource Include="Resources\Alarm_Background.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\1458404680_DoubleChevronRight.png" />
+    <Resource Include="Resources\alarm2.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\alarm2.jpg" />
+    <Resource Include="Resources\Alarm_Background copy.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

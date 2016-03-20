@@ -63,9 +63,9 @@ namespace Arduino_Alarm.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap _1458404680_DoubleChevronRight {
+        internal static System.Drawing.Bitmap Alarm_Background {
             get {
-                object obj = ResourceManager.GetObject("_1458404680_DoubleChevronRight", resourceCulture);
+                object obj = ResourceManager.GetObject("Alarm_Background", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -73,9 +73,9 @@ namespace Arduino_Alarm.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap Alarm_Background {
+        internal static System.Drawing.Bitmap Alarm_Background_copy {
             get {
-                object obj = ResourceManager.GetObject("Alarm_Background", resourceCulture);
+                object obj = ResourceManager.GetObject("Alarm_Background_copy", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

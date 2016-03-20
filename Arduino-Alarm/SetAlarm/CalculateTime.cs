@@ -52,14 +52,18 @@ namespace Arduino_Alarm.SetAlarm
                         {
                             foreach (ScheduleEntity sentity in data.Value)
                             {
-                                string time = await google.GetGoogleInformation(sentity.Adress);
-                                var t = Time(sentity, time);
+                                try {
+                                    string time = await google.GetGoogleInformation(sentity.Adress);
+                                    
+                                    var t = Time(sentity, time);
+                                }
+                                catch { MessageBox.Show("Error with google"); }
                                 
                                     ModificatedData md = new ModificatedData()
                                     {
                                         day = sentity.Start.DayOfWeek,
-                                        hour = t.Item1,
-                                        min = t.Item2,
+                                        hour = 0, //t.Item1
+                                        min = 0,//t.Item2
                                         _priority = sentity.Priority,
                                         _address = sentity.Adress
                                     };
@@ -68,7 +72,7 @@ namespace Arduino_Alarm.SetAlarm
                             }
                         }
                     }
-                    catch { MessageBox.Show("error in data"); }
+                    catch { MessageBox.Show("Something went wrong with Google Information. Be sure that you have Internet connection. If no, set alarm manually.","Error",MessageBoxButton.OK,MessageBoxImage.Error); }
                     
                 }
             }
@@ -79,6 +83,7 @@ namespace Arduino_Alarm.SetAlarm
         private Tuple<int,int> Time(ScheduleEntity ent, string time)
         {
             try {
+
                 string[] st = time.Split(new char[] { ' ' });
 
                 int hour = ent.Start.Hour;
@@ -92,6 +97,8 @@ namespace Arduino_Alarm.SetAlarm
                     hourGoogle = Convert.ToInt16(st[0]);
                     minGoogle = Convert.ToInt16(st[4]);
                 }
+                if (time.Contains("day"))
+                    MessageBox.Show("Please enter address correctly");
                 else
                 {
                     minGoogle = Convert.ToInt16(st[0]);
