@@ -8,6 +8,7 @@
         Title="Manual Settings"
           Width="400"
         Height="300"
+        ResizeMode="NoResize"
         mc:Ignorable="d">
     <Grid Background="#FF00527A">
         <Grid.ColumnDefinitions>

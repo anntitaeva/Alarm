@@ -8,6 +8,7 @@
         Title="Set Alarm"
         Width="504"
         Height="350"
+        ResizeMode="NoResize"
         mc:Ignorable="d">
     <Grid Background="#FF00527A">
 
