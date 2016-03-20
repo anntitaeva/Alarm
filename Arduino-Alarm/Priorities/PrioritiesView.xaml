@@ -5,57 +5,73 @@
         xmlns:local="clr-namespace:Arduino_Alarm"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         Title="Set priorities"
-        Width="300"
-        Height="300"
+         Width="504"
+        Height="350"
         ResizeMode="NoResize"
         mc:Ignorable="d">
     <Grid Background="#FF00527A">
-        <Button x:Name="OK" Content="OK" 
-                HorizontalAlignment="Left"
-                Margin="43,209,0,0" 
-                VerticalAlignment="Top" 
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Button x:Name="OK"
                 Width="108"
-                Height="41" 
-                Background="#FF2ED5AF"
-                BorderBrush="Transparent"
-                Foreground="White"
-                BorderThickness="0"                
-                FontSize="18"
-                Click="OK_Click"/>
-        <Button x:Name="Cancel" 
-                Content="Cancel" 
-                HorizontalAlignment="Right" 
-                Margin="0,209,29,0" 
-                VerticalAlignment="Top" 
-                FontSize="18"
-                Width="108" 
                 Height="41"
+               Margin="0,0,0,20"
+                HorizontalAlignment="Right"
+                VerticalAlignment="Bottom"
+                 Background="#FF2ED5AF"
+                BorderBrush="#FFD48E8E"
+                BorderThickness="0"
+                Click="OK_Click"
+                Content="OK"
+                Foreground="White" />
+        <Button x:Name="Cancel"
+                Width="108"
+                Height="41"
+                Margin="9,0,0,20"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Bottom"
                 Background="#FFB155BF"
-                BorderBrush="Transparent"
-                Foreground="White" 
-                Click="Cancel_Click"/>
+                BorderBrush="#FFD48E8E"
+                Click="Cancel_Click"
+                Content="Cancel"
+                Foreground="White"  Grid.Column="1" />
         <ListBox x:Name="listBox"
-                 Width="222"
+                 Width="409"
                  Height="137"
-                 Margin="43,67,0,0"
+                 Margin="0,50,0,0"
+                 HorizontalAlignment="Center"
+                 VerticalAlignment="Center"
+                 Background="#19FFFFFF"
+                 Foreground="White"
+                 ItemsSource="{Binding Path=List1}"
+                 SelectionMode="Multiple" 
+                 Grid.ColumnSpan="2"/>
+
+        <ListBox x:Name="listBox_Copy"
+                 Width="120"
+                 Height="137"
+                 Margin="162,60,0,0"
                  HorizontalAlignment="Left"
                  VerticalAlignment="Top"
-                 ItemsSource="{Binding Path=List1}"
-                 SelectionMode="Multiple">
-            <ListBox
-                 Background="#FF00527A"/>
-        </ListBox>
-        <Label x:Name="label"
-               Margin="97,10,0,0"
+                 BorderBrush="#FF89A0CB"
+                 SelectedItem="{Binding ItemsSelected2}"
+                 SelectionMode="Multiple"
+                 Visibility="Hidden" Grid.ColumnSpan="2"/>
+            <Label x:Name="label"
+               Grid.ColumnSpan="2"
+               Margin="30,20,0,10"
                HorizontalAlignment="Left"
                VerticalAlignment="Top"
                Content="CHOOSE SUBJECTS"
-               Foreground="White" />
+               Foreground="White" 
+               FontSize="32"/>
         <Label x:Name="label1"
-               Margin="43,36,0,0"
+               Margin="139,88,0,0"
                HorizontalAlignment="Left"
                VerticalAlignment="Top"
                Content="Alarm will work twice for chosen subjects"
-               Foreground="White" />
+               Foreground="White" Height="26" Width="227" Grid.ColumnSpan="2" />
     </Grid>
 </Window>
