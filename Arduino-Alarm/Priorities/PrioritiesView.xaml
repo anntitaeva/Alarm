@@ -78,7 +78,7 @@
                Margin="19,36,0,0"
                HorizontalAlignment="Left"
                VerticalAlignment="Top"
-               Content="Alarm will work twice for choosen subjects"
+               Content="Alarm will work twice for chosen subjects"
                Foreground="White" />
     </Grid>
 </Window>
