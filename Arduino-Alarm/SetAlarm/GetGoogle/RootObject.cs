@@ -6,15 +6,6 @@ using System.Threading.Tasks;
 
 namespace Arduino_Alarm.SetAlarm.GetGoogle
 {
-    class RootObject
-    {
-        public string destination_addresses { get; set; }
-        public string origin_addresses { get; set; }
-        public List<Row> rows { get; set; }
-        public string status { get; set; }
-    }
-
-
     public class Distance
     {
         public string text { get; set; }
@@ -37,6 +28,14 @@ namespace Arduino_Alarm.SetAlarm.GetGoogle
     public class Row
     {
         public List<Element> elements { get; set; }
+    }
+
+    public class RootObject
+    {
+        public List<string> destination_addresses { get; set; }
+        public List<string> origin_addresses { get; set; }
+        public List<Row> rows { get; set; }
+        public string status { get; set; }
     }
 
 }

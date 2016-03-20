@@ -83,7 +83,7 @@ namespace Arduino_Alarm.SetAlarm
                     return false;
                 }
             }
-            catch (Exception e)
+            catch 
             {
                 return false;
             }

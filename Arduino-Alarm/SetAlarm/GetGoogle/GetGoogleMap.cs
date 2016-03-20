@@ -14,7 +14,7 @@ namespace Arduino_Alarm.SetAlarm.GetGoogle //может конструктор �
     {
         private string mode;
         private string time;
-
+        public Action<string> OnReadyTime;
         
 
         public GetGoogleMap()
@@ -42,45 +42,47 @@ namespace Arduino_Alarm.SetAlarm.GetGoogle //может конструктор �
         }
         private string URL(string from, string to, string mode)
         {
-            return string.Format("https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origin={0}&destination={1}&mode={2}&key=AIzaSyDQdP6s9dA_RXoqh6NbkCKKvu2WMQi2rFo", from, to, mode);
+            return string.Format("https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins={0}&destinations={1}&mode={2}&key=AIzaSyDQdP6s9dA_RXoqh6NbkCKKvu2WMQi2rFo", from, to, mode);
         }
 
-        public async Task<string> GetGoogleInformation(string to)
+        public async Task GetGoogleInformation(string to)
         {
             try
             {
                 using (var client = new HttpClient())
                 {
+                    
                     HttpResponseMessage response = await client.GetAsync(URL(Factory.GetSettings().Address, to, mode));
                     response.EnsureSuccessStatusCode();
 
-                   
-                    var jsonString = await response.Content.ReadAsStringAsync();
-                    var rows = JsonConvert.DeserializeObject<RootObject>(jsonString);
                     
+                    var jsonString = await response.Content.ReadAsStringAsync();
+                    System.Threading.Thread.Sleep(500);
+                    var rows = JsonConvert.DeserializeObject<RootObject>(jsonString);
 
-                    //try
-                    //{
-                    //    foreach (var row in rows.rows)
-                    //    {
-                    //        foreach (var element in row.elements)
-                    //        {
-                    //            MessageBox.Show(element.duration.text);
-                    //            var time = element.duration.text;
-                    //            MessageBox.Show(time);
-                    //            return time;
-                    //        }
-                    //    }
-                      return null;
-                    //}
+                  try
+                    {
 
-                    //catch { MessageBox.Show("here"); return null; }
-            
-       
-                          
+                        foreach (var row in rows.rows)
+                        {
+                            foreach (var element in row.elements)
+                            {
+
+                                var time = element.duration.text;
+                                if (OnReadyTime != null)
+                                    OnReadyTime(time);
+
+                            }
+                        }
+                        
+                    }
+
+                    catch { MessageBox.Show("Be sure that you entered your city","Error",MessageBoxButton.OK,MessageBoxImage.Error);  }
+
+
                 }
             }
-            catch { return null; }
+            catch { MessageBox.Show("Something went wrong.","Error",MessageBoxButton.OK,MessageBoxImage.Error); }
             }
         }
     }

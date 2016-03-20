@@ -13,6 +13,7 @@ namespace Arduino_Alarm.SetAlarm
     {
         static FinalSchedule _schedule=Factory.GetIt();
         Settings set = Factory.GetSettings();
+        private int i;
 
         public ConnectArduino ardu;
         
@@ -39,6 +40,7 @@ namespace Arduino_Alarm.SetAlarm
                     };
                     _finaldata.Add(newdata);
                     Factory.Time = null;
+                    Run();
                 }
 
                 else
@@ -50,27 +52,35 @@ namespace Arduino_Alarm.SetAlarm
              
                         foreach (KeyValuePair<DayOfWeek, List<ScheduleEntity>> data in _schedule.Classes)
                         {
-                            foreach (ScheduleEntity sentity in data.Value)
-                            {
-                                try {
-                                    string time = await google.GetGoogleInformation(sentity.Adress);
-                                    
-                                    var t = Time(sentity, time);
-                                }
-                                catch { MessageBox.Show("Error with google"); }
                                 
+                                string time = null;
+                                Tuple<int, int> t;
+
+                                    google.OnReadyTime += (c => time = c);
+                                    await google.GetGoogleInformation("Москва,"+data.Value.FirstOrDefault().Adress);
+                                    System.Threading.Thread.Sleep(1000);
+
+                                if (time != null)
+                                {
+                                    t = Time(data.Value.FirstOrDefault(), time);
+
                                     ModificatedData md = new ModificatedData()
                                     {
-                                        day = sentity.Start.DayOfWeek,
-                                        hour = 0, //t.Item1
-                                        min = 0,//t.Item2
-                                        _priority = sentity.Priority,
-                                        _address = sentity.Adress
+                                        day = data.Value.FirstOrDefault().Start.DayOfWeek,
+                                        hour = t.Item1,
+                                        min = t.Item2,
+                                        _priority = data.Value.FirstOrDefault().Priority,
+                                        _address = data.Value.FirstOrDefault().Adress
                                     };
-                                
-                                _finaldata.Add(md);
+
+                                    _finaldata.Add(md);
+                                i++;
+                                     
+                                }
+                            if (i == _schedule.Classes.Count())
+                                Run();
                             }
-                        }
+                        
                     }
                     catch { MessageBox.Show("Something went wrong with Google Information. Be sure that you have Internet connection. If no, set alarm manually.","Error",MessageBoxButton.OK,MessageBoxImage.Error); }
                     
@@ -92,13 +102,16 @@ namespace Arduino_Alarm.SetAlarm
                 int hourGoogle = 0;
                 int minGoogle = 0;
 
+                if (time.Contains("day"))
+                    MessageBox.Show("Please enter address correctly or set alarm manually","Error",MessageBoxButton.OK,MessageBoxImage.Error);
+
                 if (time.Contains("hour"))
                 {
                     hourGoogle = Convert.ToInt16(st[0]);
                     minGoogle = Convert.ToInt16(st[4]);
+
                 }
-                if (time.Contains("day"))
-                    MessageBox.Show("Please enter address correctly");
+                
                 else
                 {
                     minGoogle = Convert.ToInt16(st[0]);
@@ -109,19 +122,18 @@ namespace Arduino_Alarm.SetAlarm
 
                 int readyHour = Convert.ToInt16(timetoready[0]);
                 int readyMin = Convert.ToInt16(timetoready[1]);
+              
 
-
-                int finalhour = hour + readyHour + hourGoogle;
-                if (finalhour > 24)
+                int finalhour = hour - readyHour - hourGoogle;             
+                if (finalhour < 0)
                     MessageBox.Show("Oooops! You need more than 24 hours to get to the university. If it is true, please set alarm manualy or write address more correct", "Ooops!", MessageBoxButton.OK, MessageBoxImage.Warning);
-
-                int finalminutes = min + minGoogle + readyMin;
-                if (finalminutes > 59)
-                {
-                    double d = finalminutes / 60;
-                    finalhour = (int)d;
-                    finalminutes = finalminutes - (finalhour * 60);
-                }
+                
+                int finalminutes = min - minGoogle - readyMin - 20;
+                
+                var finaltime = finalhour * 60 + finalminutes;
+                finalhour = (int)(finaltime / 60);
+                finalminutes = finaltime - finalhour * 60;
+                
 
                 return Tuple.Create<int, int>(finalhour, finalminutes);
             }
@@ -130,17 +142,23 @@ namespace Arduino_Alarm.SetAlarm
 
     public void Run()
         {
+            bool stop = false;
             foreach (ModificatedData day in _finaldata)
             {
                 if (day.day == DateTime.Now.DayOfWeek)
                 {
                     while (true)
                     {
-                        if (day.hour==DateTime.Now.Hour&&day.min==DateTime.Now.Minute)
+                        if (day.hour == DateTime.Now.Hour && day.min == DateTime.Now.Minute)
                         {
-                            ardu = new ConnectArduino(day._priority); //доделать вот тут, остановку 
+                            if (!stop)
+                            {
+                                ardu = new ConnectArduino(day._priority);
+                                stop = true;
+                            }
                         }
-
+                        else stop = false;
+                        
                         System.Threading.Thread.Sleep(500);
                     }
                 }

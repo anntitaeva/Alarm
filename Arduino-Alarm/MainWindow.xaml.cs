@@ -64,7 +64,6 @@ namespace Arduino_Alarm
         {
             var start = new CalculateTime();
             start.Calculate();
-            start.Run();
         }
     }
 }

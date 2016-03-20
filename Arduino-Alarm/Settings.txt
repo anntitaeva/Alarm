@@ -1,5 +1,5 @@
 2
 ФЭ
-eq
+Москва,Мурановская
 00:30
-All public transport
+Driving
