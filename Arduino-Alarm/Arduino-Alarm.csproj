@@ -87,6 +87,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="EnterSettings\SettingsView.xaml.cs">
+      <DependentUpon>SettingsView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Entities\ScheduleEntity.cs" />
     <Compile Include="SetAlarm\ConnectArduino.cs" />
     <Compile Include="Factory.cs" />
@@ -100,6 +103,10 @@
     <Compile Include="Entities\ModificatedData.cs" />
     <Compile Include="EnterSettings\SettingsViewModel.cs" />
     <Compile Include="SetAlarm\GetGoogle\RootObject.cs" />
+    <Page Include="EnterSettings\SettingsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
