@@ -98,9 +98,6 @@
     <Compile Include="GetSchedule\FinalSchedule.cs" />
     <Compile Include="GetSchedule\Settings.cs" />
     <Compile Include="Entities\ModificatedData.cs" />
-    <Compile Include="EnterSettings\SettingsView.xaml.cs">
-      <DependentUpon>SettingsView.xaml</DependentUpon>
-    </Compile>
     <Compile Include="EnterSettings\SettingsViewModel.cs" />
     <Compile Include="SetAlarm\GetGoogle\RootObject.cs" />
     <Page Include="MainWindow.xaml">
@@ -120,10 +117,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Priorities\PrioritiesView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="EnterSettings\SettingsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
