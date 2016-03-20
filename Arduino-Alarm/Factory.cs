@@ -41,9 +41,7 @@ namespace Arduino_Alarm
 
             _schedule = null;
             GetIt();
-        }
-
-       
+        }      
         
     }
 }

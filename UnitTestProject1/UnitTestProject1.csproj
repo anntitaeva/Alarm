@@ -40,6 +40,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Data" />
   </ItemGroup>
   <Choose>
     <When Condition="('$(VisualStudioVersion)' == '10.0' or '$(VisualStudioVersion)' == '') and '$(TargetFrameworkVersion)' == 'v3.5'">
@@ -57,10 +58,12 @@
   </Choose>
   <ItemGroup>
     <Compile Include="CalculateTime_Test.cs" />
+    <Compile Include="Check_DataTable_Tests.cs" />
     <Compile Include="ConnectArduino.Tests.cs" />
     <Compile Include="Enter_settings_Tests.cs" />
     <Compile Include="ManualSetting_Tests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Settings_Tests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
