@@ -96,6 +96,6 @@
                 </TransformGroup>
             </Button.RenderTransform>
         </Button>
-        <Image HorizontalAlignment="Left" Height="142" Margin="268,27,0,0" VerticalAlignment="Top" Width="140" Source="pack://siteoforigin:,,,/Resources/Alarm_Background.jpg" Grid.ColumnSpan="2"/>
+        <Image HorizontalAlignment="Left" Height="142" Margin="268,27,0,0" VerticalAlignment="Top" Width="140" Source="Resources/Alarm_Background.jpg" Grid.ColumnSpan="2"/>
     </Grid>
 </Window>
