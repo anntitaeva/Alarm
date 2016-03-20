@@ -10,7 +10,7 @@ using System.Windows;
 
 namespace Arduino_Alarm.EnterSettings
 {
-    class SettingsViewModel: INotifyPropertyChanged 
+    public class SettingsViewModel: INotifyPropertyChanged 
     { //переделать, не загонять все в конструктор
 
 
@@ -72,22 +72,19 @@ namespace Arduino_Alarm.EnterSettings
 
         public bool Check()
         {
-            close = true;
+            try {
+                string[] st = TimeToReady.Split(new char[] { ':' });
+                int Hours = Convert.ToInt16(st[0]);
+                int Min = Convert.ToInt16(st[1]);
 
-            string[] st = TimeToReady.Split(new char[] { ':' });
-            int Hours = Convert.ToInt16(st[0]);
-            int Min = Convert.ToInt16(st[1]);
-            if (Hours > 24 || (Min > 59))
-            return false;
 
-            else return true;
-            
-                //if (SelectedGroup != -1 && SelectedMinor != -1 && SelectedTransport != -1 && Address != null && Address.Count() != 0 && TimeToReady != null && TimeToReady.Count() != 0)
-                //{
-                //    set = new Settings() { Address = Address, Transport = Transport[SelectedTransport], Minor = Minor[SelectedMinor], Subgroup = Subgroup[SelectedGroup], TimeToReady = TimeToReady };
+                if (Hours > 24 || (Min > 59))
+                    return false;
 
-                //    set.ChangeSettings(set);
-                //}
+                else return true;
+            }
+            catch { throw new ArgumentException(); }
+
         }
                 
         private void OnPropertyChanged(string name)
@@ -102,12 +99,7 @@ namespace Arduino_Alarm.EnterSettings
         }
         
 
-        //public bool Check()
-        //{
-        //    if (SelectedGroup != -1 && SelectedMinor != -1 && SelectedTransport != -1 && Address != null && Address.Count() != 0 && TimeToReady != null && TimeToReady.Count() != 0)
-        //        return true;
-        //    else return false;
-        //}
+      
 
         public void SaveChanges()//сделать изменение через ивент! 
         {
@@ -119,10 +111,11 @@ namespace Arduino_Alarm.EnterSettings
                     Factory._set.ChangeSettings(Factory._set);
 
                 }
-                else
-                    MessageBox.Show("Error.Please enter the data", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            else
+                MessageBox.Show("Error.Please enter the data correctly", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
     }
-}
+

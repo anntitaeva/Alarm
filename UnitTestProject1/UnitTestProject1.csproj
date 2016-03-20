@@ -58,6 +58,7 @@
   <ItemGroup>
     <Compile Include="CalculateTime_Test.cs" />
     <Compile Include="ConnectArduino.Tests.cs" />
+    <Compile Include="Enter_settings_Tests.cs" />
     <Compile Include="ManualSetting_Tests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
