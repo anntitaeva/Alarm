@@ -57,7 +57,7 @@ namespace Arduino_Alarm.SetAlarm.GetGoogle //может конструктор �
 
                     
                     var jsonString = await response.Content.ReadAsStringAsync();
-                    System.Threading.Thread.Sleep(500);
+                    await Task.Delay(500);
                     var rows = JsonConvert.DeserializeObject<RootObject>(jsonString);
 
                   try

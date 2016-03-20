@@ -27,6 +27,7 @@ namespace Arduino_Alarm.SetAlarm
                 try
                 {
                     await DetectArduino();
+                    System.Threading.Thread.Sleep(500);
                     arduinoBoard.Write(prior.ToString());
                 }
 
@@ -96,12 +97,14 @@ namespace Arduino_Alarm.SetAlarm
                 byte[] buffer = new byte[4096];
                 Task<int> returnMessage = arduinoBoard.BaseStream.ReadAsync(buffer,0,100);
 
-                arduinoBoard.Close();
                 int bytesRead = await returnMessage;
-
+                
+                arduinoBoard.Close();
+                
                 string data = Encoding.ASCII.GetString(buffer, 0, bytesRead);
-               
+                MessageBox.Show(data);
 
+                
                 if (data.Contains("Info from Arduino"))
                 {
                     return true;
@@ -110,6 +113,7 @@ namespace Arduino_Alarm.SetAlarm
                 {
                     return false;
                 }
+                
             }
             catch 
             {

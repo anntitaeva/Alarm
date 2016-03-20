@@ -32,12 +32,12 @@ namespace Arduino_Alarm.EnterSettings
         {
             try
             {
-                if (setalarm.Check())
-                {
+                
                     setalarm.SaveChanges();
+                if(setalarm.close)
                     this.Close();
-                }
-                else setalarm.Error();
+                
+                
             }
             catch
             {

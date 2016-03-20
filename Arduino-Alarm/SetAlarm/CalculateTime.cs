@@ -16,9 +16,10 @@ namespace Arduino_Alarm.SetAlarm
         private int i;
 
         public ConnectArduino ardu;
+        public Action OnReady;
 
 
-        private List<ModificatedData> _finaldata;
+        private IList<ModificatedData> _finaldata;
 
         public async Task Calculate()
         {
@@ -29,7 +30,7 @@ namespace Arduino_Alarm.SetAlarm
             {
                 try {
                     
-                    ModificatedData newdata = new ModificatedData()
+                    var newdata = new ModificatedData()
                     {
                         day = Factory.Day,
                         hour = Convert.ToInt16((Factory.Time.Split(new char[] { ':' }))[0]),
@@ -40,6 +41,7 @@ namespace Arduino_Alarm.SetAlarm
 
                     _finaldata.Add(newdata);
                     Factory.Time = null;
+                    
                    await Run();
                 }
                 catch { throw new ArgumentException(); }
@@ -60,13 +62,14 @@ namespace Arduino_Alarm.SetAlarm
 
                         google.OnReadyTime += (c => time = c);
                         await google.GetGoogleInformation("Москва," + data.Value.FirstOrDefault().Adress);
+
                         System.Threading.Thread.Sleep(500);
 
                         if (time != null)
                         {
                             t = Time(data.Value.FirstOrDefault(), time);
 
-                            ModificatedData md = new ModificatedData()
+                            var md = new ModificatedData()
                             {
                                 day = data.Value.FirstOrDefault().Start.DayOfWeek,
                                 hour = t.Item1,
@@ -157,7 +160,11 @@ namespace Arduino_Alarm.SetAlarm
     public async Task Run()
         {
             bool stop = false;
-            foreach (ModificatedData day in _finaldata)
+
+            if (OnReady != null)
+                OnReady();
+
+            foreach (var day in _finaldata)
             {
                 if (day.day == DateTime.Now.DayOfWeek)
                 {
@@ -174,7 +181,7 @@ namespace Arduino_Alarm.SetAlarm
                         }
                         else stop = false;
                         
-                        System.Threading.Thread.Sleep(500);
+                        await Task.Delay(500);
                     }
                 }
             }
