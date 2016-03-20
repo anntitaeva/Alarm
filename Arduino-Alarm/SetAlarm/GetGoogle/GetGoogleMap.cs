@@ -8,12 +8,12 @@ using Newtonsoft.Json;
 using Arduino_Alarm.SetAlarm.GetSchedule;
 using System.Windows;
 
-namespace Arduino_Alarm.SetAlarm.GetGoogle //может конструктор сделать асинк
+namespace Arduino_Alarm.SetAlarm.GetGoogle 
 {
     class GetGoogleMap
     {
         private string mode;
-        private string time;
+        
         public Action<string> OnReadyTime;
         
 
@@ -59,6 +59,7 @@ namespace Arduino_Alarm.SetAlarm.GetGoogle //может конструктор �
                     var jsonString = await response.Content.ReadAsStringAsync();
                     await Task.Delay(500);
                     var rows = JsonConvert.DeserializeObject<RootObject>(jsonString);
+                
 
                   try
                     {
@@ -73,12 +74,13 @@ namespace Arduino_Alarm.SetAlarm.GetGoogle //может конструктор �
                                     OnReadyTime(time);
 
                             }
+                            
                         }
                         
                     }
 
-                    catch { MessageBox.Show("Be sure that you entered your city","Error",MessageBoxButton.OK,MessageBoxImage.Error);  }
-
+                    catch { MessageBox.Show("Be sure that you entered your city or you entered the right transport.", "Error", MessageBoxButton.OK, MessageBoxImage.Error); }
+                    
 
                 }
             }

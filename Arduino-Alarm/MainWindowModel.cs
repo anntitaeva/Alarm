@@ -9,17 +9,19 @@ namespace Arduino_Alarm
 {
     class MainWindowModel:Factory
     {
-        // MainWindow view = new MainWindow();
-        public Action OnOpenSettings;
+        
 
         public MainWindowModel()
         {
             var set = Factory.GetSettings();
             if (set.Address == "Например:Москва")
-                if (OnOpenSettings != null)
-                    OnOpenSettings();
+               
+        {
+            MessageBox.Show("Hello! Try our alarm. Fisrt open settings to enter necessary data.", "Hello!", MessageBoxButton.OK, MessageBoxImage.Information);
 
         }
+
+    }
 
        
     }

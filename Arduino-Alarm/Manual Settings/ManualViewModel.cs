@@ -7,11 +7,12 @@ using System.Windows;
 
 namespace Arduino_Alarm.Manual_Settings
 {
-    public class ManualViewModel:Factory
+    public class ManualViewModel
     {
         public string SetTime { get; set; }
         public bool close;
         int Hours { get; set; }
+
         int Min
         {
             get; set;

@@ -21,6 +21,7 @@ namespace Arduino_Alarm.EnterSettings
         public List<int> Subgroup { get; set; }
         public bool close;
 
+
         public int SelectedTransport
         {
             get; set;
@@ -101,20 +102,18 @@ namespace Arduino_Alarm.EnterSettings
         {
                 MessageBox.Show("Error.Please enter the data", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
         }
-        
-
-      
+          
 
         public void SaveChanges()
         {
             Check();
             if (close)
             {
-                if (SelectedGroup != -1 && SelectedMinor != -1 && SelectedTransport != -1 && Address != null && Address.Count() != 0 && TimeToReady != null && TimeToReady.Count() != 0)
+                if (SelectedGroup != -1 && SelectedMinor != -1 && SelectedTransport != -1 && Address != null && Address.Trim().Count() != 0 && TimeToReady != null && TimeToReady.Count() != 0)
                 {
                     Factory._set = new Settings() { Address = Address, Transport = Transport[SelectedTransport], Minor = Minor[SelectedMinor], Subgroup = Subgroup[SelectedGroup], TimeToReady = TimeToReady };
                     Factory._set.ChangeSettings(Factory._set);
-
+                    Factory.Update();
                 }
                 else
                 {

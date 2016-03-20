@@ -33,15 +33,11 @@ namespace Arduino_Alarm
 
             return _schedule;
         }
-
-        private static void Update()
+        internal static void Update()
         {
-            _set = null;
-            GetSettings();
-
             _schedule = null;
             GetIt();
-        }      
+        }
         
     }
 }

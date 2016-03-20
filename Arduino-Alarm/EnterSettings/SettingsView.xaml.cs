@@ -33,7 +33,7 @@ namespace Arduino_Alarm.EnterSettings
             try
             {
                 
-                    setalarm.SaveChanges();
+                setalarm.SaveChanges();
                 if(setalarm.close)
                     this.Close();
                 

@@ -21,7 +21,7 @@ namespace Arduino_Alarm.SetAlarm
                 if (prior == null)
                     throw new NullReferenceException();
 
-            //if ((prior is int))
+            if ((prior is int))
             {
 
                 try
@@ -35,7 +35,7 @@ namespace Arduino_Alarm.SetAlarm
                 System.Threading.Thread.Sleep(500);
                 arduinoBoard.Close();
             }
-            //else throw new ArgumentException();
+            else throw new ArgumentException();
                 
             
             
@@ -69,7 +69,8 @@ namespace Arduino_Alarm.SetAlarm
             
        
 
-            if (ArduinoPortFound == false) return;
+            if (ArduinoPortFound == false)
+                   await DetectArduino();
             
 
             arduinoBoard.BaudRate = 9600;
@@ -102,7 +103,7 @@ namespace Arduino_Alarm.SetAlarm
                 arduinoBoard.Close();
                 
                 string data = Encoding.ASCII.GetString(buffer, 0, bytesRead);
-                MessageBox.Show(data);
+                //MessageBox.Show(data);
 
                 
                 if (data.Contains("Info from Arduino"))

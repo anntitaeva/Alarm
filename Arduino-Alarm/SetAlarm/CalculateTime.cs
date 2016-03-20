@@ -9,7 +9,7 @@ using System.Windows;
 
 namespace Arduino_Alarm.SetAlarm
 {
-    public class CalculateTime //доделать с ошибками
+    public class CalculateTime 
     {
         static FinalSchedule _schedule = Factory.GetIt();
         Settings set = Factory.GetSettings();
@@ -17,6 +17,7 @@ namespace Arduino_Alarm.SetAlarm
 
         public ConnectArduino ardu;
         public Action OnReady;
+      
 
 
         private IList<ModificatedData> _finaldata;
@@ -61,13 +62,16 @@ namespace Arduino_Alarm.SetAlarm
                         Tuple<int, int> t;
 
                         google.OnReadyTime += (c => time = c);
+                        
                         await google.GetGoogleInformation("Москва," + data.Value.FirstOrDefault().Adress);
 
                         System.Threading.Thread.Sleep(500);
 
                         if (time != null)
                         {
+                            
                             t = Time(data.Value.FirstOrDefault(), time);
+                            
 
                             var md = new ModificatedData()
                             {
@@ -106,20 +110,26 @@ namespace Arduino_Alarm.SetAlarm
             
 
             string[] st = time.Split(new char[] { ' ' });
+            //MessageBox.Show(time);
 
             int hour = ent.Start.Hour;
             int min = ent.Start.Minute;
+           // MessageBox.Show(hour.ToString() + " " + min.ToString()); //CHECK
 
             int hourGoogle = 0;
-            int minGoogle = 0;
+            int minGoogle;
 
             if (time.Contains("day"))
-                MessageBox.Show("Please enter address correctly or set alarm manually", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+               MessageBox.Show("Please enter address correctly or set alarm manually", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
 
             if (time.Contains("hour"))
             {
-                hourGoogle = Convert.ToInt16(st[0]);
-                minGoogle = Convert.ToInt16(st[4]);
+             
+                    hourGoogle = Convert.ToInt16(st[0]);
+                
+                    minGoogle = Convert.ToInt16(st[2]);
+   
+              // MessageBox.Show(hourGoogle.ToString()+" " + minGoogle.ToString()); //CHECK
 
             }
 
@@ -134,24 +144,25 @@ namespace Arduino_Alarm.SetAlarm
             try {
                 int readyHour = Convert.ToInt16(timetoready[0]);
                 int readyMin = Convert.ToInt16(timetoready[1]);
+                //MessageBox.Show(readyHour.ToString() + ":" + readyMin.ToString()); //CHECK
 
 
-
-                int finalhour = hour - readyHour - hourGoogle;
+                int finalhour = hour - readyHour- hourGoogle;
                 if (finalhour < 0)
                     MessageBox.Show("Oooops! You need more than 24 hours to get to the university. If it is true, please set alarm manualy or write address more correct", "Ooops!", MessageBoxButton.OK, MessageBoxImage.Warning);
 
-                int finalminutes = min - minGoogle - readyMin - 20;
+                int finalminutes = min- minGoogle - readyMin - 20;
 
                 var finaltime = finalhour * 60 + finalminutes;
                 finalhour = (int)(finaltime / 60);
                 finalminutes = finaltime - finalhour * 60;
+               // MessageBox.Show(finalhour.ToString() + ":" + finalminutes.ToString());//CHECK
             
 
 
             return Tuple.Create<int, int>(finalhour, finalminutes);
         }
-            catch { throw new ArgumentException(); }
+            catch { MessageBox.Show("here"); throw new ArgumentException(); }
         }
 
     
