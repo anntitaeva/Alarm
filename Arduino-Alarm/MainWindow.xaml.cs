@@ -66,5 +66,11 @@ namespace Arduino_Alarm
             await start.Calculate();
             MessageBox.Show("Your alarm had been set. Good night", "All right", MessageBoxButton.OK, MessageBoxImage.Information);
         }
+
+        private void button_Click(object sender, RoutedEventArgs e)
+        {
+            string info = "The program is developed by Higher School of Economics students\n\n1. Set initial settings or set the time manually\n2. Set important subjects by choosing them in priority list\n3. Click Set Alarm button";
+            MessageBox.Show(info, "Help", MessageBoxButton.OK, MessageBoxImage.Information);
+        }
     }
 }

@@ -87,7 +87,7 @@
                 Background="#FF1F8F9E"
                 Content="More Info"
                 Foreground="White"
-                RenderTransformOrigin="0.5,0.5" BorderBrush="{x:Null}">
+                RenderTransformOrigin="0.5,0.5" BorderBrush="{x:Null}" Click="button_Click">
             <Button.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform />
