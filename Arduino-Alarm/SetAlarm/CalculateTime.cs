@@ -20,7 +20,7 @@ namespace Arduino_Alarm.SetAlarm
 
         private List<ModificatedData> _finaldata;
 
-        public async void Calculate()
+        public async Task Calculate()
         {
 
             _finaldata = new List<ModificatedData>();
@@ -37,9 +37,10 @@ namespace Arduino_Alarm.SetAlarm
                         _priority = 1,
                         _address = null
                     };
+
                     _finaldata.Add(newdata);
                     Factory.Time = null;
-                    Run();
+                   await Run();
                 }
                 catch { throw new ArgumentException(); }
             }
@@ -80,7 +81,7 @@ namespace Arduino_Alarm.SetAlarm
                         }
 
                         if (i == _schedule.Classes.Count())
-                            Run();
+                          await  Run();
                     }
                 }
 
@@ -153,7 +154,7 @@ namespace Arduino_Alarm.SetAlarm
     
 
 
-    public void Run()
+    public async Task Run()
         {
             bool stop = false;
             foreach (ModificatedData day in _finaldata)
@@ -167,7 +168,7 @@ namespace Arduino_Alarm.SetAlarm
                             if (!stop)
                             {
                                 ardu = new ConnectArduino();
-                                ardu.Start(day._priority);
+                                await ardu.Start(day._priority);
                                 stop = true;
                             }
                         }
