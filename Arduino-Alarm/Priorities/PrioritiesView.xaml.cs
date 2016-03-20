@@ -43,7 +43,7 @@ namespace Arduino_Alarm
             foreach (string item in listBox.SelectedItems)
             {
                 _pw.ItemsSelected.Add(item);
-                _pw.WorkWithList();
+                
             }
         }
         
@@ -52,7 +52,7 @@ namespace Arduino_Alarm
         {
             if (OnSelectionChanged != null)
                 OnSelectionChanged();
-
+            _pw.WorkWithList();
             this.Close();
         }
 

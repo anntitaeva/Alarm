@@ -7,7 +7,7 @@ using System.IO;
 
 namespace Arduino_Alarm.SetAlarm.GetSchedule
 {
-    class Settings
+    public class Settings
     {
 
         public int Subgroup { get; set; }

@@ -4,34 +4,54 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.IO.Ports;
+using System.Windows;
 
 namespace Arduino_Alarm.SetAlarm
 {
-    class ConnectArduino
+    public class ConnectArduino
     {
         SerialPort arduinoBoard = new SerialPort();
         bool ArduinoPortFound = false;
-        public int Prior { get; set; }
+        
 
         
-        public ConnectArduino(int prior)
+        public void Start(object prior)
         {
-            DetectArduino();
-            arduinoBoard.Write(Prior.ToString());
+            
+                if (prior == null)
+                    throw new NullReferenceException();
+            if ((prior is int))
+            {
 
-            System.Threading.Thread.Sleep(500);
-            arduinoBoard.Close();
+                try
+                {
+                    DetectArduino();
+                    arduinoBoard.Write(prior.ToString());
+                }
+
+                catch { throw new InvalidOperationException(); }
+                System.Threading.Thread.Sleep(500);
+                arduinoBoard.Close();
+            }
+            else throw new ArgumentException();
+                
+            
+            
+            
 
         }
 
         private void DetectArduino()
         {
-            try
-            {
+           
                 string[] ports = SerialPort.GetPortNames();
+                if (ports.Count() == 0)
+                    throw new InvalidOperationException();
+
                 foreach (string port in ports)
                 {
                     arduinoBoard = new SerialPort(port, 9600);
+                    
                     if (ArduinoDetected())
                     {
                         ArduinoPortFound = true;
@@ -43,8 +63,9 @@ namespace Arduino_Alarm.SetAlarm
                         ArduinoPortFound = false;
                     }
                 }
-            }
-            catch { }
+            
+            
+       
 
             if (ArduinoPortFound == false) return;
             System.Threading.Thread.Sleep(500);
@@ -85,7 +106,7 @@ namespace Arduino_Alarm.SetAlarm
             }
             catch 
             {
-                return false;
+                MessageBox.Show("The programm cannot connect Arduino. Be sure that it is connected to your computer", "Error", MessageBoxButton.OK, MessageBoxImage.Error); return false;
             }
         }
     }

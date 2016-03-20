@@ -7,17 +7,21 @@ using System.Windows;
 
 namespace Arduino_Alarm.Manual_Settings
 {
-    class ManualViewModel:Factory
+    public class ManualViewModel:Factory
     {
         public string SetTime { get; set; }
         public bool close;
+        int Hours;
+        int Min;
+
 
         public bool Check()
         {
-           
+            if (SetTime == null)
+                throw new ArgumentNullException();
             try
             {
-                string[] st = SetTime.Split(new char[] { ':' });
+               string[] st = SetTime.Split(new char[] { ':' });
                 int Hours = Convert.ToInt16(st[0]);
                 int Min = Convert.ToInt16(st[1]);
                 if (Hours > 24 || (Min > 59))
@@ -29,8 +33,7 @@ namespace Arduino_Alarm.Manual_Settings
             }
             catch
             {
-                MessageBox.Show("Error! Enter time in format '23:15'", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-                return close=false;
+                throw new ArgumentException();
             }
         }
 
@@ -38,10 +41,6 @@ namespace Arduino_Alarm.Manual_Settings
         {
             close = Check();
             Factory.Time = SetTime;
-
-            string[] st = SetTime.Split(new char[] { ':' });
-            int Hours = Convert.ToInt16(st[0]);
-            int Min = Convert.ToInt16(st[1]);
 
             if (Hours < DateTime.Now.Hour|| (Hours==DateTime.Now.Hour&& Min <= DateTime.Now.Minute))
                 Factory.Day = DateTime.Now.AddDays(1).DayOfWeek;

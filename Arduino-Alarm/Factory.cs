@@ -8,17 +8,16 @@ using System.Threading.Tasks;
 
 namespace Arduino_Alarm
 {
-    class Factory
+   public class Factory
     {
         public static string Time { get; set; }
         public static DayOfWeek Day { get; set; }
        
 
-
         private static FinalSchedule _schedule;
 
-        public static Settings _set;
-        public static Settings GetSettings()
+        internal static Settings _set;
+        internal static Settings GetSettings()
         {
             if (_set == null)
                 _set = new Settings();
@@ -27,7 +26,7 @@ namespace Arduino_Alarm
         }
   
 
-        public static FinalSchedule GetIt()
+        internal static FinalSchedule GetIt()
         {
             if (_schedule == null)
                 _schedule = new FinalSchedule();

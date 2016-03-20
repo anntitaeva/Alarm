@@ -9,27 +9,26 @@ using System.Windows;
 
 namespace Arduino_Alarm.SetAlarm
 {
-    class CalculateTime //доделать с ошибками
+    public class CalculateTime //доделать с ошибками
     {
-        static FinalSchedule _schedule=Factory.GetIt();
+        static FinalSchedule _schedule = Factory.GetIt();
         Settings set = Factory.GetSettings();
         private int i;
 
         public ConnectArduino ardu;
-        
-      
+
+
         private List<ModificatedData> _finaldata;
 
         public async void Calculate()
         {
 
-            if (_finaldata == null)
+            _finaldata = new List<ModificatedData>();
+
+            if (Factory.Time != null && Factory.Day.ToString() != null)
             {
-                _finaldata = new List<ModificatedData>();
-
-                if (Factory.Time != null && Factory.Day.ToString() != null)
-                {
-
+                try {
+                    
                     ModificatedData newdata = new ModificatedData()
                     {
                         day = Factory.Day,
@@ -42,105 +41,119 @@ namespace Arduino_Alarm.SetAlarm
                     Factory.Time = null;
                     Run();
                 }
+                catch { throw new ArgumentException(); }
+            }
 
-                else
+            else
+            {
+                try
                 {
-                    try
+
+                    var google = new GetGoogleMap();
+
+                    foreach (KeyValuePair<DayOfWeek, List<ScheduleEntity>> data in _schedule.Classes)
                     {
-                        
-                        var google = new GetGoogleMap();
-             
-                        foreach (KeyValuePair<DayOfWeek, List<ScheduleEntity>> data in _schedule.Classes)
+
+                        string time = null;
+                        Tuple<int, int> t;
+
+                        google.OnReadyTime += (c => time = c);
+                        await google.GetGoogleInformation("Москва," + data.Value.FirstOrDefault().Adress);
+                        System.Threading.Thread.Sleep(500);
+
+                        if (time != null)
                         {
-                                
-                                string time = null;
-                                Tuple<int, int> t;
+                            t = Time(data.Value.FirstOrDefault(), time);
 
-                                    google.OnReadyTime += (c => time = c);
-                                    await google.GetGoogleInformation("Москва,"+data.Value.FirstOrDefault().Adress);
-                                    System.Threading.Thread.Sleep(1000);
+                            ModificatedData md = new ModificatedData()
+                            {
+                                day = data.Value.FirstOrDefault().Start.DayOfWeek,
+                                hour = t.Item1,
+                                min = t.Item2,
+                                _priority = data.Value.FirstOrDefault().Priority,
+                                _address = data.Value.FirstOrDefault().Adress
+                            };
 
-                                if (time != null)
-                                {
-                                    t = Time(data.Value.FirstOrDefault(), time);
+                            _finaldata.Add(md);
+                            i++;
 
-                                    ModificatedData md = new ModificatedData()
-                                    {
-                                        day = data.Value.FirstOrDefault().Start.DayOfWeek,
-                                        hour = t.Item1,
-                                        min = t.Item2,
-                                        _priority = data.Value.FirstOrDefault().Priority,
-                                        _address = data.Value.FirstOrDefault().Adress
-                                    };
+                        }
 
-                                    _finaldata.Add(md);
-                                i++;
-                                     
-                                }
-                            if (i == _schedule.Classes.Count())
-                                Run();
-                            }
-                        
+                        if (i == _schedule.Classes.Count())
+                            Run();
                     }
-                    catch { MessageBox.Show("Something went wrong with Google Information. Be sure that you have Internet connection. If no, set alarm manually.","Error",MessageBoxButton.OK,MessageBoxImage.Error); }
-                    
                 }
+
+
+
+                catch { MessageBox.Show("Something went wrong with Google Information. Be sure that you have Internet connection. If no, set alarm manually.", "Error", MessageBoxButton.OK, MessageBoxImage.Error); }
+
             }
         }
-        
-        
-  
-        private Tuple<int,int> Time(ScheduleEntity ent, string time)
+
+
+
+
+        public Tuple<int, int> Time(ScheduleEntity ent, string time)
         {
+
+            if (ent == null || time == null)
+            { throw new ArgumentNullException(); }
+            
+
+            string[] st = time.Split(new char[] { ' ' });
+
+            int hour = ent.Start.Hour;
+            int min = ent.Start.Minute;
+
+            int hourGoogle = 0;
+            int minGoogle = 0;
+
+            if (time.Contains("day"))
+                MessageBox.Show("Please enter address correctly or set alarm manually", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+
+            if (time.Contains("hour"))
+            {
+                hourGoogle = Convert.ToInt16(st[0]);
+                minGoogle = Convert.ToInt16(st[4]);
+
+            }
+
+            else
+            {
+                minGoogle = Convert.ToInt16(st[0]);
+
+            }
+
+            string[] timetoready = set.TimeToReady.Split(new char[] { ':' });
+
             try {
-
-                string[] st = time.Split(new char[] { ' ' });
-
-                int hour = ent.Start.Hour;
-                int min = ent.Start.Minute;
-
-                int hourGoogle = 0;
-                int minGoogle = 0;
-
-                if (time.Contains("day"))
-                    MessageBox.Show("Please enter address correctly or set alarm manually","Error",MessageBoxButton.OK,MessageBoxImage.Error);
-
-                if (time.Contains("hour"))
-                {
-                    hourGoogle = Convert.ToInt16(st[0]);
-                    minGoogle = Convert.ToInt16(st[4]);
-
-                }
-                
-                else
-                {
-                    minGoogle = Convert.ToInt16(st[0]);
-
-                }
-
-                string[] timetoready = set.TimeToReady.Split(new char[] { ':' });
-
                 int readyHour = Convert.ToInt16(timetoready[0]);
                 int readyMin = Convert.ToInt16(timetoready[1]);
-              
 
-                int finalhour = hour - readyHour - hourGoogle;             
+
+
+                int finalhour = hour - readyHour - hourGoogle;
                 if (finalhour < 0)
                     MessageBox.Show("Oooops! You need more than 24 hours to get to the university. If it is true, please set alarm manualy or write address more correct", "Ooops!", MessageBoxButton.OK, MessageBoxImage.Warning);
-                
+
                 int finalminutes = min - minGoogle - readyMin - 20;
-                
+
                 var finaltime = finalhour * 60 + finalminutes;
                 finalhour = (int)(finaltime / 60);
                 finalminutes = finaltime - finalhour * 60;
-                
+            
 
-                return Tuple.Create<int, int>(finalhour, finalminutes);
-            }
-            catch { MessageBox.Show("Error here");return null;   }
+
+            return Tuple.Create<int, int>(finalhour, finalminutes);
+        }
+            catch { throw new ArgumentException(); }
         }
 
-    public void Run()
+    
+
+
+    public async Task Run()
         {
             bool stop = false;
             foreach (ModificatedData day in _finaldata)
@@ -153,7 +166,8 @@ namespace Arduino_Alarm.SetAlarm
                         {
                             if (!stop)
                             {
-                                ardu = new ConnectArduino(day._priority);
+                                ardu = new ConnectArduino();
+                                ardu.Start(day._priority);
                                 stop = true;
                             }
                         }

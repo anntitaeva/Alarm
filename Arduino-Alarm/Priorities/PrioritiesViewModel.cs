@@ -39,14 +39,19 @@ namespace Arduino_Alarm
                     foreach (ScheduleEntity se in pair.Value)
                         foreach (string s in ItemsSelected)
                             if (s == se.Name)
+                            {
                                 se.Priority = 1;
+                            }
                 }
             }
+
         }
 
         public List<string> GetList1()
         {
             List1 = new List<string>();
+            
+
             foreach (KeyValuePair<DayOfWeek, List<ScheduleEntity>> pair in sched.Classes)
             {
                 foreach (ScheduleEntity se in pair.Value)

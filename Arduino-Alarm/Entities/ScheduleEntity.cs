@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Arduino_Alarm
 {
-    class ScheduleEntity
+   public class ScheduleEntity
     {
         public DateTime Start { get; set; }
         public DateTime Finish { get; set; }

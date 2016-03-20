@@ -39,11 +39,27 @@
         <ListBox x:Name="listBox"
                  Width="126"
                  Height="137"
-                 Margin="175,109,0,0"
+                 Margin="95,100,0,0"
                  ItemsSource="{Binding List1}"
                  HorizontalAlignment="Left"
                  VerticalAlignment="Top"
-                 SelectionMode="Multiple" Background="{x:Null}" BorderBrush="{x:Null}" Grid.ColumnSpan="2"/>
+                 SelectedItem="{Binding ItemSelected}" SelectionMode="Single" SelectionChanged="listBox_SelectionChanged" Background="{x:Null}" BorderBrush="{x:Null}"/>
+        <ListBox x:Name="listBox_Copy"
+                 Width="120"
+                 Height="137"
+                 Margin="162,60,0,0"
+                 HorizontalAlignment="Left"
+                 ItemsSource="{Binding List2}"
+                 SelectionMode="Multiple"
+                 SelectedItem="{Binding ItemsSelected2}"
+                 VerticalAlignment="Top" BorderBrush="#FF89A0CB" Visibility="Hidden" Grid.ColumnSpan="2">
+            <ListBox.Background>
+                <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1">
+                    <GradientStop Offset="0.368" Color="#FF3A1D1D" />
+                    <GradientStop Offset="1" Color="#FF763232" />
+                </LinearGradientBrush>
+            </ListBox.Background>
+        </ListBox>
         <Label x:Name="label"
                HorizontalAlignment="Left"
                VerticalAlignment="Top"
@@ -53,11 +69,37 @@
                Foreground="White" Grid.ColumnSpan="2"
  />
         <Label x:Name="label1"
-               Margin="175,78,0,0"
+               Margin="85,74,0,0"
                HorizontalAlignment="Left"
                VerticalAlignment="Top"
                Content="Very important subjects"
-               Foreground="White" Grid.ColumnSpan="2" />
+               Foreground="White" />
+        <Label x:Name="label2"
+               Margin="35,74,0,0"
+               HorizontalAlignment="Left"
+               VerticalAlignment="Top"
+               Content="Important subjects"
+               Foreground="White" Grid.Column="1" />
+        <Button x:Name="button2"
+                Width="46"
+                Margin="221,142,0,0"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Top"
+                BorderThickness="0"
+                Content="" Click="button2_Click" BorderBrush="Transparent" Height="45" Grid.ColumnSpan="2" >
+            <Button.Background>
+                <ImageBrush ImageSource="/Arduino-Alarm;component/Resources/1458404680_DoubleChevronRight.png"/>
+            </Button.Background>
+        </Button>
+        <Button x:Name="button" Content="&lt;&lt;"
+                Width="26"
+                Visibility="Hidden"
+                Margin="136,125,0,0"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Top"
+                Background="#FF8B5656"
+                BorderBrush="#FFD48E8E"
+                BorderThickness="0" Click="button_Click"/>
         <Image Grid.Column="1" HorizontalAlignment="Right" Height="51" Margin="0,15,20,0" VerticalAlignment="Top" Width="57" Source="/Arduino-Alarm;component/Resources/alarm2.jpg"/>
     </Grid>
 </Window>
