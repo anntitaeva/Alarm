@@ -8,13 +8,7 @@
         Width="525"
         Height="350"
         mc:Ignorable="d">
-    <Grid>
-        <Grid.Background>
-            <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1">
-                <GradientStop Offset="0.368" Color="#FF3A1D1D" />
-                <GradientStop Offset="1" Color="#FF763232" />
-            </LinearGradientBrush>
-        </Grid.Background>
+    <Grid Background="#FF00527A">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="309*" />
             <ColumnDefinition Width="155*" />
@@ -27,7 +21,7 @@
                 HorizontalAlignment="Left"
                 VerticalAlignment="Top"
                 Background="#FF62E08A"
-                BorderBrush="#FFD48E8E"
+                BorderBrush="{x:Null}"
                 Content="Set Alarm"
                 ForceCursor="False"
                 Foreground="White"
@@ -39,7 +33,7 @@
                 HorizontalAlignment="Left"
                 VerticalAlignment="Top"
                 Background="#FFB155BF"
-                BorderBrush="#FFD48E8E"
+                BorderBrush="{x:Null}"
                 Content="Initial Settings"
                 ForceCursor="False"
                 Foreground="White"
@@ -51,8 +45,8 @@
                 Margin="242,235,0,0"
                 HorizontalAlignment="Left"
                 VerticalAlignment="Top"
-                Background="#FF44ABBB"
-                BorderBrush="#FFD48E8E"
+                Background="#FF2EC1D5"
+                BorderBrush="{x:Null}"
                 Content="Set Priorities"
                 ForceCursor="False"
                 Foreground="White"
@@ -76,7 +70,7 @@
                 HorizontalAlignment="Left"
                 VerticalAlignment="Top"
                 Background="#FFE6D673"
-                BorderBrush="#FFD48E8E"
+                BorderBrush="{x:Null}"
                 Content="Manual Settings "
                 ForceCursor="False"
                 Foreground="White"
@@ -89,10 +83,10 @@
                 Margin="33,144,-142,0"
                 HorizontalAlignment="Left"
                 VerticalAlignment="Top"
-                Background="#FF8B5656"
+                Background="#FF1F8F9E"
                 Content="More Info"
                 Foreground="White"
-                RenderTransformOrigin="0.5,0.5">
+                RenderTransformOrigin="0.5,0.5" BorderBrush="{x:Null}">
             <Button.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform />
@@ -102,5 +96,6 @@
                 </TransformGroup>
             </Button.RenderTransform>
         </Button>
+        <Image HorizontalAlignment="Left" Height="142" Margin="268,27,0,0" VerticalAlignment="Top" Width="140" Source="Resources/Alarm_Background.jpg" Grid.ColumnSpan="2"/>
     </Grid>
 </Window>
