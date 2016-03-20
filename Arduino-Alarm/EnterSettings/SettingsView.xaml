@@ -22,7 +22,7 @@
                Margin="30,20,0,10"
                HorizontalAlignment="Left"
                VerticalAlignment="Top"
-               Content="SET ALARM"
+               Content="SETTINGS"
                FontSize="32"
                Foreground="White" />
         <Button x:Name="OK"

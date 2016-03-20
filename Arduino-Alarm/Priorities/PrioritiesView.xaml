@@ -17,7 +17,7 @@
         <Button x:Name="OK"
                 Width="108"
                 Height="41"
-               Margin="0,0,0,20"
+               Margin="0,0,0,10"
                 HorizontalAlignment="Right"
                 VerticalAlignment="Bottom"
                  Background="#FF2ED5AF"
@@ -25,18 +25,18 @@
                 BorderThickness="0"
                 Click="OK_Click"
                 Content="OK"
-                Foreground="White" />
+                Foreground="White" FontSize="18" />
         <Button x:Name="Cancel"
                 Width="108"
                 Height="41"
-                Margin="9,0,0,20"
+                Margin="9,0,0,10"
                 HorizontalAlignment="Left"
                 VerticalAlignment="Bottom"
                 Background="#FFB155BF"
                 BorderBrush="#FFD48E8E"
                 Click="Cancel_Click"
                 Content="Cancel"
-                Foreground="White"  Grid.Column="1" />
+                Foreground="White"  Grid.Column="1" FontSize="18" />
         <ListBox x:Name="listBox"
                  Width="409"
                  Height="137"
@@ -59,7 +59,7 @@
                  SelectedItem="{Binding ItemsSelected2}"
                  SelectionMode="Multiple"
                  Visibility="Hidden" Grid.ColumnSpan="2"/>
-            <Label x:Name="label"
+        <Label x:Name="label"
                Grid.ColumnSpan="2"
                Margin="30,20,0,10"
                HorizontalAlignment="Left"
