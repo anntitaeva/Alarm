@@ -9,74 +9,50 @@
         Height="300"
         ResizeMode="NoResize"
         mc:Ignorable="d">
-    <Grid>
-        <Grid.Background>
-            <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1">
-                <GradientStop Offset="0.368" Color="#FF3A1D1D" />
-                <GradientStop Offset="1" Color="#FF763232" />
-            </LinearGradientBrush>
-        </Grid.Background>
-        <Button x:Name="OK"
-                Width="126"
-                Margin="10,224,0,0"
+    <Grid Background="#FF00527A">
+        <Button x:Name="OK" Content="OK" 
                 HorizontalAlignment="Left"
-                VerticalAlignment="Top"
-                Background="#FF8B5656"
-                BorderBrush="#FFD48E8E"
-                BorderThickness="0"
-                Click="OK_Click"
-                Content="OK"
-                Foreground="White" />
-        <Button x:Name="Cancel"
-                Width="120"
-                Margin="162,224,0,0"
-                HorizontalAlignment="Left"
-                VerticalAlignment="Top"
-                Background="#FF8B5656"
-                BorderBrush="#FFD48E8E"
-                Click="Cancel_Click"
-                Content="Cancel"
-                Foreground="White" />
+                Margin="43,209,0,0" 
+                VerticalAlignment="Top" 
+                Width="108"
+                Height="41" 
+                Background="#FF2ED5AF"
+                BorderBrush="Transparent"
+                Foreground="White"
+                BorderThickness="0"                
+                FontSize="18"
+                Click="OK_Click"/>
+        <Button x:Name="Cancel" 
+                Content="Cancel" 
+                HorizontalAlignment="Right" 
+                Margin="0,209,29,0" 
+                VerticalAlignment="Top" 
+                FontSize="18"
+                Width="108" 
+                Height="41"
+                Background="#FFB155BF"
+                BorderBrush="Transparent"
+                Foreground="White" 
+                Click="Cancel_Click"/>
         <ListBox x:Name="listBox"
-                 Width="234"
+                 Width="222"
                  Height="137"
-                 Margin="19,62,0,0"
+                 Margin="43,67,0,0"
                  HorizontalAlignment="Left"
                  VerticalAlignment="Top"
                  ItemsSource="{Binding Path=List1}"
                  SelectionMode="Multiple">
-            <ListBox.Background>
-                <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1">
-                    <GradientStop Offset="0.368" Color="#FF3A1D1D" />
-                    <GradientStop Offset="1" Color="#FF763232" />
-                </LinearGradientBrush>
-            </ListBox.Background>
-        </ListBox>
-        <ListBox x:Name="listBox_Copy"
-                 Width="120"
-                 Height="137"
-                 Margin="162,60,0,0"
-                 HorizontalAlignment="Left"
-                 VerticalAlignment="Top"
-                 BorderBrush="#FF89A0CB"
-                 SelectedItem="{Binding ItemsSelected2}"
-                 SelectionMode="Multiple"
-                 Visibility="Hidden">
-            <ListBox.Background>
-                <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1">
-                    <GradientStop Offset="0.368" Color="#FF3A1D1D" />
-                    <GradientStop Offset="1" Color="#FF763232" />
-                </LinearGradientBrush>
-            </ListBox.Background>
+            <ListBox
+                 Background="#FF00527A"/>
         </ListBox>
         <Label x:Name="label"
-               Margin="91,10,0,0"
+               Margin="97,10,0,0"
                HorizontalAlignment="Left"
                VerticalAlignment="Top"
                Content="CHOOSE SUBJECTS"
                Foreground="White" />
         <Label x:Name="label1"
-               Margin="19,36,0,0"
+               Margin="43,36,0,0"
                HorizontalAlignment="Left"
                VerticalAlignment="Top"
                Content="Alarm will work twice for chosen subjects"

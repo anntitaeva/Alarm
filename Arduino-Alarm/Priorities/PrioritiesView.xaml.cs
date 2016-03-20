@@ -46,12 +46,9 @@ namespace Arduino_Alarm
                 
             }
         }
-        
 
         private void OK_Click(object sender, RoutedEventArgs e)
         {
-            if (OnSelectionChanged != null)
-                OnSelectionChanged();
             _pw.WorkWithList();
             this.Close();
         }
@@ -60,8 +57,5 @@ namespace Arduino_Alarm
         {
             this.Close();
         }
-
-   
-
     }
 }

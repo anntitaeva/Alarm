@@ -11,15 +11,14 @@ using System.Collections.ObjectModel;
 
 namespace Arduino_Alarm
 {
-    class PrioritiesViewModel : Factory //переделать немного поля
+    class PrioritiesViewModel : Factory 
     {
       
-        public List<string> List1 { get; set; }
-        public List<string> ItemsSelected = new List<string>();
+        public IList<string> List1 { get; set; }
+        public IList<string> ItemsSelected = new List<string>();
 
         FinalSchedule sched = Factory.GetIt();
-        SettingsView viewset = new SettingsView();
-        
+     
  
         public PrioritiesViewModel()
         {
@@ -47,7 +46,7 @@ namespace Arduino_Alarm
 
         }
 
-        public List<string> GetList1()
+        public IList<string> GetList1()
         {
             List1 = new List<string>();
             
