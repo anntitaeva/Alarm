@@ -12,8 +12,6 @@
         mc:Ignorable="d">
     <Grid Background="#FF00527A">
 
-
-
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="247*" />
             <ColumnDefinition Width="249*" />
