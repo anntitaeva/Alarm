@@ -30,17 +30,13 @@ namespace Arduino_Alarm.Manual_Settings
 
         private void OK_Click(object sender, RoutedEventArgs e)
         {
-            try
-            {
+            try {
                 _vm.SaveChanges();
-                if (_vm.close == true)
+                if (_vm.close)
                     this.Close();
             }
-            catch
-            {
-                _vm.Error();
-            }
-           
+            catch { _vm.Error(); }
+        
         }
 
         private void Cancel_Click(object sender, RoutedEventArgs e)

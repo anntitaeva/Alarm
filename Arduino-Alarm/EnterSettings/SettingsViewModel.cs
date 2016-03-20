@@ -11,7 +11,7 @@ using System.Windows;
 namespace Arduino_Alarm.EnterSettings
 {
     public class SettingsViewModel: INotifyPropertyChanged 
-    { //переделать, не загонять все в конструктор
+    { 
 
 
         public string Address { get; set; }
@@ -19,7 +19,7 @@ namespace Arduino_Alarm.EnterSettings
         public string TimeToReady { get; set; }
         public List<string> Minor { get; set; }
         public List<int> Subgroup { get; set; }
-        bool close;
+        public bool close;
 
         public int SelectedTransport
         {
@@ -70,18 +70,22 @@ namespace Arduino_Alarm.EnterSettings
   
         }
 
-        public bool Check()
+        public void Check()
         {
-            try {
+            try
+            {
+                
                 string[] st = TimeToReady.Split(new char[] { ':' });
                 int Hours = Convert.ToInt16(st[0]);
                 int Min = Convert.ToInt16(st[1]);
 
 
                 if (Hours > 24 || (Min > 59))
-                    return false;
-
-                else return true;
+                {
+                    close = false;
+                    MessageBox.Show("Enter time in format 23:15", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+                else close = true;
             }
             catch { throw new ArgumentException(); }
 
@@ -101,9 +105,10 @@ namespace Arduino_Alarm.EnterSettings
 
       
 
-        public void SaveChanges()//сделать изменение через ивент! 
+        public void SaveChanges()
         {
-            if (Check())
+            Check();
+            if (close)
             {
                 if (SelectedGroup != -1 && SelectedMinor != -1 && SelectedTransport != -1 && Address != null && Address.Count() != 0 && TimeToReady != null && TimeToReady.Count() != 0)
                 {
@@ -111,9 +116,13 @@ namespace Arduino_Alarm.EnterSettings
                     Factory._set.ChangeSettings(Factory._set);
 
                 }
+                else
+                {
+                    close = false; Error();
+                }
+                
             }
-            else
-                MessageBox.Show("Error.Please enter the data correctly", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            
             }
         }
 

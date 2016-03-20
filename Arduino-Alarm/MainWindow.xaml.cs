@@ -63,8 +63,14 @@ namespace Arduino_Alarm
         private async void Set_Alarm_Click(object sender, RoutedEventArgs e)
         {
             var start = new CalculateTime();
+            start.OnReady += Message;
             await start.Calculate();
+            
+        }
+        public void Message()
+        {
             MessageBox.Show("Your alarm had been set. Good night", "All right", MessageBoxButton.OK, MessageBoxImage.Information);
+            this.WindowState = WindowState.Minimized;
         }
     }
 }

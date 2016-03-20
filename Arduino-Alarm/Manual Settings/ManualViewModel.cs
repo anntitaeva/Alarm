@@ -19,33 +19,38 @@ namespace Arduino_Alarm.Manual_Settings
 
 
 
-        public bool Check()
+        public void Check()
         {
             if (SetTime == null)
+            {
                 throw new ArgumentNullException();
-            
+                
+            }
                 string[] st = SetTime.Split(new char[] { ':' });
                 Hours = Convert.ToInt16(st[0]);
                 Min = Convert.ToInt16(st[1]);
-           
-                if (Hours > 24 || (Min > 59))
-                {
-                    MessageBox.Show("Error! Enter time in format '23:15'", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-                    close = false;
-                }
-                return close=true;
+
+            if (Hours > 24 || (Min > 59))
+            {
+                MessageBox.Show("Error! Enter time in format '23:15'", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                close = false;
+            }
+            else close = true;
             }
            
         
 
         public void SaveChanges()
         {
-            close = Check();
-            Factory.Time = SetTime;
+            Check();
+            if (close)
+            {
+                Factory.Time = SetTime;
 
-            if (Hours < DateTime.Now.Hour|| (Hours==DateTime.Now.Hour&& Min <= DateTime.Now.Minute))
-                Factory.Day = DateTime.Now.AddDays(1).DayOfWeek;
-            else Factory.Day = DateTime.Now.DayOfWeek;
+                if (Hours < DateTime.Now.Hour || (Hours == DateTime.Now.Hour && Min <= DateTime.Now.Minute))
+                    Factory.Day = DateTime.Now.AddDays(1).DayOfWeek;
+                else Factory.Day = DateTime.Now.DayOfWeek;
+            }
         }
 
         public void Error()
