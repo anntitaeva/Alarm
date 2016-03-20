@@ -1,5 +1,5 @@
-2
-ФЭ
-Мурановская 
+1
+Урб
+Мурановская
 00:30
-Driving
+All public transport

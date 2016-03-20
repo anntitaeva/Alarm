@@ -33,16 +33,9 @@ namespace Arduino_Alarm
            
             InitializeComponent();
             DataContext = mv;
-            mv.OnOpenSettings += Hello;
-            
-                  
+               
         }
 
-        public void Hello()
-        {
-            MessageBox.Show("Hello! Try our alarm. Fisrt open settings.", "Hello!", MessageBoxButton.OK, MessageBoxImage.Information);
-            
-        }
       
         private void Manual_Set_Click(object sender, RoutedEventArgs e)
         {
@@ -62,20 +55,28 @@ namespace Arduino_Alarm
 
         private async void Set_Alarm_Click(object sender, RoutedEventArgs e)
         {
+            if (Factory.Time== null)
+                MessageBox.Show("Wait a second...We need to check your schedule!", "Checking...", MessageBoxButton.OK, MessageBoxImage.Information);
             var start = new CalculateTime();
+
             start.OnReady += Message;
-            await start.Calculate();
+            try
+            {
+                await start.Calculate();
+            }
+            catch { MessageBox.Show("Connection with Arduino is not established.Please connect your Arduino to the computer.", "Error", MessageBoxButton.OK, MessageBoxImage.Error); }
             
         }
         public void Message()
         {
-            MessageBox.Show("Your alarm had been set. Good night", "All right", MessageBoxButton.OK, MessageBoxImage.Information);
+            MessageBox.Show("Be sure that you have connected arduino.\n\nYour alarm will be set. Good night!", "All right", MessageBoxButton.OK, MessageBoxImage.Information);
             this.WindowState = WindowState.Minimized;
         }
+     
 
         private void button_Click(object sender, RoutedEventArgs e)
         {
-            string info = "The program is developed by Higher School of Economics students\n\n1. Set initial settings or set the time manually\n2. Set important subjects by choosing them in priority list\n3. Click Set Alarm button";
+            string info = "The program is developed by Higher School of Economics students\n\n1. Set initial settings or set the time manually\n2. Set important subjects by choosing them in priority list. For these subjects alarm will work twice.\n3. Click Set Alarm button.";
             MessageBox.Show(info, "Help", MessageBoxButton.OK, MessageBoxImage.Information);
         }
     }

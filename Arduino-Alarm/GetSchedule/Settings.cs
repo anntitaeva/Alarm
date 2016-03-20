@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.IO;
+using System.Windows;
 
 namespace Arduino_Alarm.SetAlarm.GetSchedule
 {
@@ -16,7 +17,7 @@ namespace Arduino_Alarm.SetAlarm.GetSchedule
         public string TimeToReady { get; set; }
         public string Transport { get; set; }
 
-        public Action OnOpenSettings;
+       
 
         public Settings()
         {
@@ -44,8 +45,9 @@ namespace Arduino_Alarm.SetAlarm.GetSchedule
             }
             catch
             {
-                settings = null;
-            }
+                settings = null; MessageBox.Show("Programm cannot find a file with settings", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            
+        }
             return settings;
         }
 
@@ -57,7 +59,7 @@ namespace Arduino_Alarm.SetAlarm.GetSchedule
                 string[] settings = new string[] { set.Subgroup.ToString(), set.Minor, set.Address, set.TimeToReady, set.Transport };
                 File.WriteAllLines(@"..\\..\\Settings.txt", settings, enc);
             }
-            catch { }
+            catch { MessageBox.Show("Programm cannot find a file with settings", "Error", MessageBoxButton.OK, MessageBoxImage.Error); }
 
         }
 
@@ -68,8 +70,7 @@ namespace Arduino_Alarm.SetAlarm.GetSchedule
             {
                 if (settings.Any(c => c == null) || settings.Length < 5)
                 {
-                    if (OnOpenSettings != null)
-                        OnOpenSettings();
+                    
                 }
                 else
                 {
