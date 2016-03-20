@@ -8,7 +8,7 @@ namespace UnitTestProject1
     public class ManualViewModel_Tests
     {
         [TestMethod]
-        [ExpectedException(typeof(ArgumentException))]
+        [ExpectedException(typeof(FormatException))]
         public void Need_only_int()
         {
             ManualViewModel mw = new ManualViewModel();

@@ -9,26 +9,26 @@ namespace UnitTestProject1
     {
         [TestMethod]
         [ExpectedException(typeof(NullReferenceException))]
-        public void Cannot_put_null_in_Start()
+        public async void Cannot_put_null_in_Start()
         {
             var ardu=new ConnectArduino();
-            ardu.Start(null);
+            await ardu.Start(null);
         }
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentException))]
-        public void Cannot_put_anything_but_int_in_Start()
+        public async void Cannot_put_anything_but_int_in_Start()
         {
             var ardu = new ConnectArduino();
-            ardu.Start("vwtrni");
+           await ardu.Start("vwtrni");
         }
 
         [TestMethod]
         [ExpectedException(typeof(InvalidOperationException))]
-        public void Cannot_connect_arduino()
+        public async void Cannot_connect_arduino()
         {
             var ardu = new ConnectArduino();
-            ardu.Start(0);
+            await ardu.Start(0);
         }
 
     }

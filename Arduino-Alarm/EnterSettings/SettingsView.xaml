@@ -38,17 +38,14 @@
                 Click="OK_Click"
                 Content="OK"
                 FontSize="18"
-                Foreground="White"
-                
-                
-            />
+                Foreground="White" />
         <Label x:Name="Adress"
-               Width="120"
+               Width="198"
                Height="28"
                Margin="50,85,0,0"
                HorizontalAlignment="Left"
                VerticalAlignment="Top"
-               Content="Enter your address"
+               Content="Enter address, including city"
                FontSize="13.333"
                Foreground="White" />
         <Label x:Name="GetReady"
@@ -97,8 +94,8 @@
                 Margin="9,0,0,20"
                 HorizontalAlignment="Left"
                 VerticalAlignment="Bottom"
-                BorderThickness="0"
                 Background="#FFB155BF"
+                BorderThickness="0"
                 Click="Cancel_Click"
                 Content="Cancel"
                 FontSize="18"
@@ -116,7 +113,6 @@
                  FontSize="13.333"
                  Foreground="Black"
                  Text="{Binding Address}"
-                 TextAlignment="Center"
                  TextWrapping="Wrap" />
         <xctk:MaskedTextBox x:Name="MaskedTextBox"
                             Grid.Column="1"
@@ -180,7 +176,13 @@
                   ItemsSource="{Binding Path=Subgroup}"
                   SelectedIndex="{Binding SelectedGroup,
                                           Mode=TwoWay}" />
-        <Image Grid.Column="1" HorizontalAlignment="Right" Height="68" Margin="0,8,10,0" VerticalAlignment="Top" Width="72" Source="/Arduino-Alarm;component/Resources/Alarm_Background copy.jpg"/>
+        <Image Grid.Column="1"
+               Width="72"
+               Height="68"
+               Margin="0,8,10,0"
+               HorizontalAlignment="Right"
+               VerticalAlignment="Top"
+               Source="/Arduino-Alarm;component/Resources/Alarm_Background copy.jpg" />
 
 
     </Grid>

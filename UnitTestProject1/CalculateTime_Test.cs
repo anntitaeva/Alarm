@@ -13,12 +13,12 @@ namespace UnitTestProject1
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentException))]
-        public void Cannot_be_not_string()
+        public async void Cannot_be_not_string()
         {
             Factory.Time = "3455";
             Factory.Day = DayOfWeek.Friday;
             var s = new CalculateTime();
-            s.Calculate();
+            await s.Calculate();
 
         }
 
