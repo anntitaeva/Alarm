@@ -153,7 +153,7 @@ namespace Arduino_Alarm.SetAlarm
     
 
 
-    public async Task Run()
+    public void Run()
         {
             bool stop = false;
             foreach (ModificatedData day in _finaldata)
