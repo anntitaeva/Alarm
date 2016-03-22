@@ -69,26 +69,32 @@ namespace Arduino_Alarm.SetAlarm
 
                         if (time != null)
                         {
-                            
+
                             t = Time(data.Value.FirstOrDefault(), time);
-                            
 
-                            var md = new ModificatedData()
+                            if (t != null)
                             {
-                                day = data.Value.FirstOrDefault().Start.DayOfWeek,
-                                hour = t.Item1,
-                                min = t.Item2,
-                                _priority = data.Value.FirstOrDefault().Priority,
-                                _address = data.Value.FirstOrDefault().Adress
-                            };
+                                var md = new ModificatedData()
+                                {
+                                    day = data.Value.FirstOrDefault().Start.DayOfWeek,
+                                    hour = t.Item1,
+                                    min = t.Item2,
+                                    _priority = data.Value.FirstOrDefault().Priority,
+                                    _address = data.Value.FirstOrDefault().Adress
+                                };
 
-                            _finaldata.Add(md);
-                            i++;
+                                _finaldata.Add(md);
+                                i++;
 
+                                if (i == _schedule.Classes.Count())
+                                await  Run();
+
+                            }
+                           
+                            else break;
                         }
-
-                        if (i == _schedule.Classes.Count())
-                          await  Run();
+                        
+                        
                     }
                 }
 
@@ -120,7 +126,10 @@ namespace Arduino_Alarm.SetAlarm
             int minGoogle;
 
             if (time.Contains("day"))
-               MessageBox.Show("Please enter address correctly or set alarm manually", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            {
+                MessageBox.Show("Please enter address correctly or set alarm manually", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                return null;
+            }
 
             if (time.Contains("hour"))
             {
